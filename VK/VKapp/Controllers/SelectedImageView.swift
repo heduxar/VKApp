@@ -7,25 +7,34 @@
 //
 
 import UIKit
+import Kingfisher
 
 class SelectedImageView: UIViewController, UIScrollViewDelegate {
-    var images = [UIImage?]()
+    var images = [Photo]()
     var indexPhoto = Int()
+    let networkService = NetworkService()
     @IBOutlet var imageView: UIImageView!
     @IBOutlet var heart: UIImageView!
+    @IBOutlet var likeCounter: UILabel!
+    @IBOutlet var repostCounter: UILabel!
+    @IBOutlet var commentCounter: UILabel!
+    
+    
     @IBAction func back() {
         dismiss(animated: true, completion: nil)
     }
     private var propertyAnimator: UIViewPropertyAnimator!
     private var liked = false{
         didSet{
-            if !liked {
+            if liked {
                 UIView.transition(with: heart, duration: 0.3, options: .transitionFlipFromTop, animations: {
                     self.heart.image = UIImage(named: "heart_filled")
+                    self.images[self.indexPhoto].user_likes = 1
                 }, completion: nil)
             } else {
                 UIView.transition(with: heart, duration: 0.3, options: .transitionFlipFromTop, animations: {
                     self.heart.image = UIImage(named: "heart_empty")
+                    self.images[self.indexPhoto].user_likes = 0
                 }, completion: nil)
             }
         }
@@ -33,32 +42,40 @@ class SelectedImageView: UIViewController, UIScrollViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        imageView.image = images[indexPhoto]
-        print(images.count)
-        print(indexPhoto)
+        setImage(indexPhoto: indexPhoto)
+        //        imageView.kf.setImage(with: URL(string: images[indexPhoto].urlString))
+        //        likeCounter.text = String(images[indexPhoto].likes)
+        //        repostCounter.text = String(images[indexPhoto].reposts)
         addSwipe()
     }
-    
+    private func setImage (indexPhoto: Int) {
+        self.imageView.transform = .identity
+        imageView.kf.setImage(with: URL(string: images[indexPhoto].urlString))
+        likeCounter.text = String(images[indexPhoto].likes)
+        repostCounter.text = String(images[indexPhoto].reposts)
+        images[indexPhoto].user_likes > 0 ? (self.liked = true) : (self.liked = false)
+    }
     func addSwipe() {
         let swipeImage = UISwipeGestureRecognizer(target: self, action: #selector(swipeDown))
         let zoomImage = UIPinchGestureRecognizer(target: self, action: #selector(zoom))
         let likePressed = UITapGestureRecognizer(target: self, action: #selector(like))
         let doubleTabLike = UITapGestureRecognizer(target: self, action: #selector(like))
-//        let previosPhoto = UISwipeGestureRecognizer(target: self, action: #selector(swipeRight))
-//        let nextPhoto = UISwipeGestureRecognizer(target: self, action: #selector(swipeLeft))
-        let testPanSwipe = UIPanGestureRecognizer(target: self, action: #selector(panRecognizer))
-        testPanSwipe.maximumNumberOfTouches = 1
+        //        let previosPhoto = UISwipeGestureRecognizer(target: self, action: #selector(swipeRight))
+        //        let nextPhoto = UISwipeGestureRecognizer(target: self, action: #selector(swipeLeft))
+        let edgePanSwipe = UIPanGestureRecognizer(target: self, action: #selector(panRecognizer))
+        //        UIScreenEdgePanGestureRecognizer
+        edgePanSwipe.maximumNumberOfTouches = 1
         swipeImage.direction = .down
         likePressed.numberOfTapsRequired = 1
         doubleTabLike.numberOfTapsRequired = 2
-//        previosPhoto.direction = .right
-//        nextPhoto.direction = .left
+        //        previosPhoto.direction = .right
+        //        nextPhoto.direction = .left
         imageView.addGestureRecognizer(swipeImage)
         imageView.addGestureRecognizer(zoomImage)
         imageView.addGestureRecognizer(doubleTabLike)
-        imageView.addGestureRecognizer(testPanSwipe)
-//        imageView.addGestureRecognizer(previosPhoto)
-//        imageView.addGestureRecognizer(nextPhoto)
+        imageView.addGestureRecognizer(edgePanSwipe)
+        //        imageView.addGestureRecognizer(previosPhoto)
+        //        imageView.addGestureRecognizer(nextPhoto)
         heart.addGestureRecognizer(likePressed)
     }
     @objc private func panRecognizer(_ recognizer: UIPanGestureRecognizer){
@@ -71,7 +88,8 @@ class SelectedImageView: UIViewController, UIScrollViewDelegate {
                         print(self.indexPhoto)
                         self.indexPhoto -= 1
                         UIView.transition(with: self.imageView, duration: 0.5, options: .transitionFlipFromLeft, animations: {
-                            self.imageView.image = self.images[self.indexPhoto]
+                            self.setImage(indexPhoto: self.indexPhoto)
+                            //                            self.imageView.image = self.images[self.indexPhoto]
                         }, completion: nil)
                     }
                 }else {
@@ -79,7 +97,7 @@ class SelectedImageView: UIViewController, UIScrollViewDelegate {
                         print(self.indexPhoto)
                         self.indexPhoto += 1
                         UIView.transition(with: self.imageView, duration: 0.5, options: .transitionFlipFromRight, animations: {
-                            self.imageView.image = self.images[self.indexPhoto]
+                            self.setImage(indexPhoto: self.indexPhoto)
                         }, completion: nil)
                     }
                 }
@@ -106,7 +124,8 @@ class SelectedImageView: UIViewController, UIScrollViewDelegate {
                 print(indexPhoto)
                 indexPhoto -= 1
                 UIView.transition(with: imageView, duration: 0.5, options: .transitionFlipFromLeft, animations: {
-                    self.imageView.image = self.images[self.indexPhoto]
+                    self.setImage(indexPhoto: self.indexPhoto)
+                    //                    self.imageView.image = self.images[self.indexPhoto]
                 }, completion: nil)
                 
             }
@@ -118,7 +137,8 @@ class SelectedImageView: UIViewController, UIScrollViewDelegate {
                 print(indexPhoto)
                 indexPhoto += 1
                 UIView.transition(with: imageView, duration: 0.5, options: .transitionFlipFromRight, animations: {
-                    self.imageView.image = self.images[self.indexPhoto]
+                    self.setImage(indexPhoto: self.indexPhoto)
+                    //                    self.imageView.image = self.images[self.indexPhoto]
                 }, completion: nil)
             }
         }
@@ -146,8 +166,19 @@ class SelectedImageView: UIViewController, UIScrollViewDelegate {
     }
     @objc private func like(_ recognizer: UITapGestureRecognizer){
         if recognizer.state == .recognized{
-            liked.toggle()
+            if images[indexPhoto].user_likes == 0 {
+                networkService.likesAdd(ownerId: images[indexPhoto].owner_id, itemId: images[indexPhoto].id, type: "photo") { [weak self] likes in
+                    guard let self = self else {return}
+                    self.likeCounter.text = String(likes)
+                    self.liked.toggle()
+                }
+            } else {
+                networkService.likesDelete(ownerId: images[indexPhoto].owner_id, itemId: images[indexPhoto].id, type: "photo") { [weak self] likes in
+                    guard let self = self else {return}
+                    self.likeCounter.text = String(likes)
+                    self.liked.toggle()
+                }
+            }
         }
     }
-    
 }

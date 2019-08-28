@@ -13,7 +13,7 @@ class UserGroupsTableView: UITableViewController {
     @IBOutlet weak var groupSearch: UISearchBar!
     lazy var searchingText = [Group]()
     var searching = false
-    let networkService = NetworkServices()
+    let networkService = NetworkService()
     private var myGroups = [Group]()
     
     @IBAction func addGroup (_ segue: UIStoryboardSegue) {

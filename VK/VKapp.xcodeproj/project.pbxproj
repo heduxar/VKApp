@@ -40,8 +40,9 @@
 		B4AE9AD622C49DE50005822D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B4AE9AD422C49DE50005822D /* LaunchScreen.storyboard */; };
 		B4B76D6D23054D2500432A6B /* LoginVK.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B4B76D6C23054D2500432A6B /* LoginVK.storyboard */; };
 		B4B76D6F23054D5300432A6B /* LoginVK.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4B76D6E23054D5300432A6B /* LoginVK.swift */; };
-		B4CB9794230938A300B31527 /* NetworkServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4CB9793230938A300B31527 /* NetworkServices.swift */; };
+		B4CB9794230938A300B31527 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4CB9793230938A300B31527 /* NetworkService.swift */; };
 		B4CB9796230D799600B31527 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4CB9795230D799600B31527 /* WebKit.framework */; };
+		B4CB97982312750400B31527 /* Photo.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4CB97972312750400B31527 /* Photo.swift */; };
 		B4F38D6922E74ED3006210F3 /* NewsTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4F38D6822E74ED3006210F3 /* NewsTableView.swift */; };
 /* End PBXBuildFile section */
 
@@ -82,8 +83,9 @@
 		B4AE9AD722C49DE50005822D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B4B76D6C23054D2500432A6B /* LoginVK.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LoginVK.storyboard; sourceTree = "<group>"; };
 		B4B76D6E23054D5300432A6B /* LoginVK.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginVK.swift; sourceTree = "<group>"; };
-		B4CB9793230938A300B31527 /* NetworkServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkServices.swift; sourceTree = "<group>"; };
+		B4CB9793230938A300B31527 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		B4CB9795230D799600B31527 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
+		B4CB97972312750400B31527 /* Photo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Photo.swift; sourceTree = "<group>"; };
 		B4F38D6822E74ED3006210F3 /* NewsTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = NewsTableView.swift; path = VKapp/Controllers/NewsTableView.swift; sourceTree = SOURCE_ROOT; };
 		CBC18D0088BC5CF49B2EF79C /* Pods_VKapp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_VKapp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -180,6 +182,7 @@
 			isa = PBXGroup;
 			children = (
 				B41543BE22D08EB80056B2DC /* User.swift */,
+				B4CB97972312750400B31527 /* Photo.swift */,
 				B403ADB422FEDB0800254E26 /* Session.swift */,
 				B41543C022D08F210056B2DC /* Group.swift */,
 				B4A9BCE022EB7E9300A43CAF /* News.swift */,
@@ -213,7 +216,7 @@
 				B43F758F22D0D5190012DBCC /* View */,
 				B43F758D22D0D4EB0012DBCC /* Controllers */,
 				B4AE9AD722C49DE50005822D /* Info.plist */,
-				B4CB9793230938A300B31527 /* NetworkServices.swift */,
+				B4CB9793230938A300B31527 /* NetworkService.swift */,
 			);
 			path = VKapp;
 			sourceTree = "<group>";
@@ -346,6 +349,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B4CB97982312750400B31527 /* Photo.swift in Sources */,
 				B4B76D6F23054D5300432A6B /* LoginVK.swift in Sources */,
 				B41E0ADA22FAC96A0046527F /* ScaleUpAnimator.swift in Sources */,
 				B41543B522CF58560056B2DC /* FriendsTableView.swift in Sources */,
@@ -367,7 +371,7 @@
 				B41543BF22D08EB80056B2DC /* User.swift in Sources */,
 				B41CF43C22E0684600CD50C5 /* MainTableCell.swift in Sources */,
 				B4AE9ACC22C49DE30005822D /* AppDelegate.swift in Sources */,
-				B4CB9794230938A300B31527 /* NetworkServices.swift in Sources */,
+				B4CB9794230938A300B31527 /* NetworkService.swift in Sources */,
 				B403ADB522FEDB0800254E26 /* Session.swift in Sources */,
 				B41543B722CFDA5B0056B2DC /* GroupsTableView.swift in Sources */,
 				B4A9BCE122EB7E9300A43CAF /* News.swift in Sources */,

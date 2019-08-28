@@ -8,11 +8,12 @@
 
 import UIKit
 import SwiftyJSON
+import RealmSwift
 
 class Group {
-    let id: Int
-    let name: String
-    let avatar: String
+    @objc dynamic let id: Int
+    @objc dynamic let name: String
+    @objc dynamic let avatar: String
     init(_ json: JSON) {
         self.id = json["id"].intValue
         self.name = json["name"].stringValue

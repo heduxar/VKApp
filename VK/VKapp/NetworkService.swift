@@ -10,7 +10,7 @@ import Foundation
 import Alamofire
 import SwiftyJSON
 
-class NetworkServices {
+class NetworkService {
     let baseUrl = "https://api.vk.com"
     static let session: SessionManager = {
         let config = URLSessionConfiguration.default
@@ -29,7 +29,7 @@ class NetworkServices {
             "count": 1000,
             "v": "5.101"
         ]
-        NetworkServices.session.request(self.baseUrl + path, method: .get, parameters: params).responseJSON { response in
+        NetworkService.session.request(self.baseUrl + path, method: .get, parameters: params).responseJSON { response in
             switch response.result {
             case .success(let value):
                 let json = JSON(value)
@@ -49,7 +49,7 @@ class NetworkServices {
             "access_token": token,
             "v": "5.101"
         ]
-        NetworkServices.session.request(self.baseUrl + path, method: .get, parameters: params).responseJSON { response in
+        NetworkService.session.request(self.baseUrl + path, method: .get, parameters: params).responseJSON { response in
             switch response.result {
             case .success(let value):
                 let json = JSON(value)
@@ -73,7 +73,7 @@ class NetworkServices {
             "fields": "photo_200_orig",
             "v" : "5.101"
         ]
-        NetworkServices.session.request(self.baseUrl + path, method: .get, parameters: params).responseJSON { response in
+        NetworkService.session.request(self.baseUrl + path, method: .get, parameters: params).responseJSON { response in
             switch response.result {
             case .success(let value):
                 let json = JSON(value)
@@ -86,22 +86,75 @@ class NetworkServices {
             }
         }
     }
-    func getPhotos(userId: Int){
-        let path = "/method/photos.get"
+    func getPhotos(userId: Int, complition: @escaping ([Photo]) -> Void){
+        let path = "/method/photos.getAll"
         guard let token = Session.session.token else {preconditionFailure("Empty token!")}
         let params: Parameters = [
             "access_token" : token,
-            "extended" : 1,
+            "scope" : "photos",
             "owner_id" : userId,
-            "album_id" : "profile",
-            "rev" : 0,
-            "count" : 100,
+            "extended" : 1,
+            "offset" : 0,
+            "count" : 200,
+            "photo_sizes" : 0,
+            "no_service_albums" : 0,
+            "need_hidden" : 0,
+            "skip_hidden" : 1,
             "v": "5.101"
         ]
-        NetworkServices.session.request(self.baseUrl + path, method: .get, parameters: params).responseJSON { response in
-            guard let json = response.value else { return }
-            
-            print(json)
+        NetworkService.session.request(self.baseUrl + path, method: .get, parameters: params).responseJSON { response in
+            switch response.result {
+            case .success(let value):
+                let json = JSON(value)
+                let photosJSONs = json["response"]["items"].arrayValue
+                let photos = photosJSONs.map {Photo($0)}
+                complition(photos)
+            case .failure(let err):
+                print(err)
+                complition([])
+            }
+        }
+    }
+    func likesAdd (ownerId: Int, itemId: Int, type: String, complition: @escaping (Int) -> Void){
+        let path = "/method/likes.add"
+        guard let token = Session.session.token else {preconditionFailure("Empty token!")}
+        let params: Parameters = [
+            "access_token": token,
+            "type" : type,
+            "owner_id" : ownerId,
+            "item_id" : itemId,
+            "v": "5.101"
+        ]
+        NetworkService.session.request(baseUrl + path, method: .get, parameters: params).responseJSON { response in
+            switch response.result {
+            case .success(let value):
+                let json = JSON(value)
+                let newLikes = json["response"]["likes"].intValue
+                complition(newLikes)
+            case .failure(let err):
+                print(err)
+            }
+        }
+    }
+    func likesDelete (ownerId: Int, itemId: Int, type: String, complition: @escaping (Int) -> Void){
+        let path = "/method/likes.delete"
+        guard let token = Session.session.token else {preconditionFailure("Empty token!")}
+        let params: Parameters = [
+            "access_token": token,
+            "type" : type,
+            "owner_id" : ownerId,
+            "item_id" : itemId,
+            "v": "5.101"
+        ]
+        NetworkService.session.request(baseUrl + path, method: .get, parameters: params).responseJSON { response in
+            switch response.result {
+            case .success(let value):
+                let json = JSON(value)
+                let newLikes = json["response"]["likes"].intValue
+                complition(newLikes)
+            case .failure(let err):
+                print(err)
+            }
         }
     }
     func searchGroups(searchText:String, complition: @escaping ([Group]) -> Void){
@@ -114,7 +167,7 @@ class NetworkServices {
             "sort" : 3,
             "v": "5.101"
         ]
-        NetworkServices.session.request(self.baseUrl + path, method: .get, parameters: params).responseJSON { response in
+        NetworkService.session.request(self.baseUrl + path, method: .get, parameters: params).responseJSON { response in
             switch response.result {
             case .success(let value):
                 let json = JSON(value)
@@ -127,4 +180,5 @@ class NetworkServices {
             }
         }
     }
+    
 }

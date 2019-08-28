@@ -14,27 +14,8 @@ class FriendsTableView: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet var lettersStackView: UIStackView!
-    //    fileprivate var usernames = [
-    //        User (id: 1, avatar: UIImage(named: "depp"), name: "Джонни", surname: "Депп", images: [
-    //            UIImage(named: "tobymac")!, UIImage(named: "chris")!,
-    //            UIImage(named: "chris")!,
-    //            UIImage(named: "chris")!,
-    //            UIImage(named: "chris")!,
-    //            UIImage(named: "chris")!,
-    //            UIImage(named: "chris")!,UIImage(named: "chris")!,UIImage(named: "chris")!,UIImage(named: "chris")!,UIImage(named: "chris")!,UIImage(named: "chris")!,UIImage(named: "chris")!,UIImage(named: "chris")!
-    //            ]),
-    //        User (id: 2, avatar: UIImage(named: "deltoro"), name: "Бенисио", surname: "Дель Торо"),
-    //        User (id: 3, avatar: UIImage(named: "tobymac"), name: "Тоби", surname: "Магуайр"),
-    //        User (id: 4, avatar: UIImage(named: "chris"), name: "Кристина", surname: "Риччи"),
-    //        User (id: 5, avatar: UIImage(named: "dgiter"), name: "Майкл", surname: "Джитер"),
-    //        User (id: 6, avatar: UIImage(named: "garry"), name: "Гэри", surname: "Бьюзи"),
-    //        User (id: 7, avatar: UIImage(named: "ellen"), name: "Эллен", surname: "Баркин"),
-    //        User (id: 8, avatar: UIImage(named: "markHermon"), name: "Марк", surname: "Хэрмон"),
-    //        User (id: 9, avatar: UIImage(named: "birko"), name: "Крэйг", surname: "Бирко"),
-    //        User (id: 10, avatar: UIImage(named: "catHelmond"), name: "Кэтрин", surname: "Хелмонд")
-    //    ]
     
-    let networkService = NetworkServices()
+    let networkService = NetworkService()
     private var usernames = [User]()
     var firstLetters =  [Character]()
     var sortedUsers: [Character: [User]] = [:]
@@ -44,11 +25,13 @@ class FriendsTableView: UIViewController {
         let MainTableCellNib = UINib (nibName: "MainTableCell", bundle: nil)
         tableView.register(MainTableCellNib, forCellReuseIdentifier: "MainTableCell")
         networkService.getFriends { [weak self] users in
-            self?.usernames = users
-            self?.tableView.reloadData()
+            guard let self = self else {return}
+            self.usernames = users
+            
+            (self.firstLetters, self.sortedUsers) = (self.sortUsers(self.usernames))
+            self.createStackView(self.firstLetters)
+            self.tableView.reloadData()
         }
-        (firstLetters, sortedUsers) = sortUsers(usernames)
-        createStackView(firstLetters)
     }
     
     func createStackView(_ letters: [Character]) {
@@ -77,6 +60,7 @@ class FriendsTableView: UIViewController {
                 guard let usersByChar = sortedUsers[firstLetters[indexPath.section]] else {preconditionFailure("No users by letter")}
                 let selectedUser = usersByChar[indexPath.row]
                 if let userImagesVC = segue.destination as? UserImagesView{
+                    userImagesVC.userId = selectedUser.id
 //                    userImagesVC.images.append(contentsOf: selectedUser.images)
 //                    guard selectedUser.avatar != nil else {return}
 //                    userImagesVC.images.append(selectedUser.avatar ?? UIImage(named: "file")!)

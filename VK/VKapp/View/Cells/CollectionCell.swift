@@ -7,7 +7,13 @@
 //
 
 import UIKit
+import Kingfisher
 
 class CollectionCell: UICollectionViewCell {
     @IBOutlet var img: CollectionImage!
+    public func configurePhotos(with photo: Photo) {
+        img.kf.setImage(with: URL(string: photo.urlString))
+//        name.text = group.name
+//        avatar.kf.setImage(with: URL(string: group.avatar))
+    }
 }

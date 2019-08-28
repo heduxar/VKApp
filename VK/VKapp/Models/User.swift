@@ -8,12 +8,13 @@
 
 import UIKit
 import SwiftyJSON
+import RealmSwift
 
 class User {
-    let id: Int
-    let avatar: String
-    let first_name: String
-    let last_name: String
+    @objc dynamic let id: Int
+    @objc dynamic let avatar: String
+    @objc dynamic let first_name: String
+    @objc dynamic let last_name: String
     init(_ json:JSON) {
         self.id = json["id"].intValue
         self.avatar = json["photo_200_orig"].stringValue

@@ -25,7 +25,7 @@ class LoginVK: UIViewController {
         components.path = "/authorize"
         components.queryItems = [
             URLQueryItem(name: "client_id", value: "7099659"),
-//            URLQueryItem(name: "scope", value: "262150"),
+            URLQueryItem(name: "scope", value: "503263"),
             URLQueryItem(name: "display", value: "mobile"),
             URLQueryItem(name: "redirect_uri", value: "https://oauth.vk.com/blank.html"),
             URLQueryItem(name: "response_type", value: "token"),
@@ -67,8 +67,6 @@ extension LoginVK: WKNavigationDelegate  {
         Session.session.token = token
         Session.session.userID = userIdInt
         performSegue(withIdentifier:"LoginTrueSegue", sender: Any?.self)
-        
-//        NetworkService.loadGroups(token: token)
         
         decisionHandler(.cancel)
     }
