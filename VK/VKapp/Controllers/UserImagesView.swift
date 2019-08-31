@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import RealmSwift
 
 class UserImagesView: UICollectionViewController {
     
@@ -14,14 +15,15 @@ class UserImagesView: UICollectionViewController {
     fileprivate let scaleUpAnimator = ScaleUpAnimator()
     let networkService = NetworkService()
     public var userId: Int = 1
-    public var images = [Photo]()
+//    public var images = [Photo]()
+    private lazy var images = try? Realm().objects(Photo.self).filter("owner_id == %@", userId)
     
     override func viewDidLoad() {
         super.viewDidLoad()
         networkService.getPhotos(userId: userId) { [weak self] photos in
-            guard let self = self else {return}
-            self.images = photos
-            self.collectionView.reloadData()
+            try? RealmProvider.save(items: photos)
+//            self.images = photos
+            self?.collectionView.reloadData()
         }
     }
 //
@@ -30,12 +32,12 @@ class UserImagesView: UICollectionViewController {
 //    }
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return images.count
+        return images?.count ?? 0
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CollectionCell", for: indexPath) as! CollectionCell
-        let img = images[indexPath.item]
+        let img = images?[indexPath.item]
         cell.configurePhotos(with: img)
         let opacity = CABasicAnimation(keyPath: #keyPath(CALayer.opacity))
         opacity.fromValue = 0
@@ -62,7 +64,7 @@ class UserImagesView: UICollectionViewController {
             guard collectionView.indexPathsForSelectedItems?.count == 1 else { return }
             let selectedItem = collectionView.indexPathsForSelectedItems![0].item
             destination.indexPhoto = selectedItem
-            destination.images = images
+            destination.userId = userId
         }
         present(bigPhotoController, animated: true)
     }
@@ -71,7 +73,7 @@ class UserImagesView: UICollectionViewController {
         if segue.identifier == "selectedImage",
             let selectedImageVC = segue.destination as? SelectedImageView {
             guard let indexPath = sender as? Int else {return}
-            selectedImageVC.images = images
+            selectedImageVC.userId = userId
             selectedImageVC.indexPhoto = indexPath
         }
     }

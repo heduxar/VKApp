@@ -10,15 +10,19 @@ import UIKit
 import SwiftyJSON
 import RealmSwift
 
-class User {
-    @objc dynamic let id: Int
-    @objc dynamic let avatar: String
-    @objc dynamic let first_name: String
-    @objc dynamic let last_name: String
-    init(_ json:JSON) {
+class User: Object {
+    @objc dynamic var id: Int = 0
+    @objc dynamic var avatar: String = ""
+    @objc dynamic var first_name: String = ""
+    @objc dynamic var last_name: String = ""
+    convenience init(_ json: JSON) {
+        self.init()
         self.id = json["id"].intValue
         self.avatar = json["photo_200_orig"].stringValue
         self.first_name = json["first_name"].stringValue
         self.last_name = json["last_name"].stringValue
+    }
+    override static func primaryKey() -> String? {
+        return "id"
     }
 }

@@ -10,16 +10,17 @@ import Foundation
 import SwiftyJSON
 import RealmSwift
 
-class Photo {
-    @objc dynamic var id: Int
-    @objc dynamic let owner_id: Int
-    @objc dynamic let urlString: String
-    @objc dynamic let text: String
-    @objc dynamic let likes: Int
-    @objc dynamic var user_likes: Int
-    @objc dynamic let reposts: Int
+class Photo: Object {
+    @objc dynamic var id: Int = 0
+    @objc dynamic var owner_id: Int = 0
+    @objc dynamic var urlString: String = ""
+    @objc dynamic var text: String = ""
+    @objc dynamic var likes: Int = 0
+    @objc dynamic var user_likes: Int = 0
+    @objc dynamic var reposts: Int = 0
     
-    init (_ json:JSON){
+    convenience init (_ json:JSON){
+        self.init()
         self.id = json["id"].intValue
         self.owner_id = json["owner_id"].intValue
         let sizes = json["sizes"].arrayValue
@@ -33,5 +34,8 @@ class Photo {
         self.likes = json["likes"]["count"].intValue
         self.user_likes = json["likes"]["user_likes"].intValue
         self.reposts = json["reposts"]["count"].intValue
+    }
+    override static func primaryKey() -> String? {
+        return "id"
     }
 }

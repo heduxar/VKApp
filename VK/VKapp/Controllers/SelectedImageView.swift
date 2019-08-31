@@ -8,10 +8,12 @@
 
 import UIKit
 import Kingfisher
+import RealmSwift
 
 class SelectedImageView: UIViewController, UIScrollViewDelegate {
-    var images = [Photo]()
+    var userId: Int = 0
     var indexPhoto = Int()
+    private lazy var images = try? Realm().objects(Photo.self).filter("owner_id == %@", userId)
     let networkService = NetworkService()
     @IBOutlet var imageView: UIImageView!
     @IBOutlet var heart: UIImageView!
@@ -29,12 +31,20 @@ class SelectedImageView: UIViewController, UIScrollViewDelegate {
             if liked {
                 UIView.transition(with: heart, duration: 0.3, options: .transitionFlipFromTop, animations: {
                     self.heart.image = UIImage(named: "heart_filled")
-                    self.images[self.indexPhoto].user_likes = 1
+                    let photo = try? Realm().objects(Photo.self).filter("id == %@", self.images?[self.indexPhoto].id)
+                    try? Realm().write {
+                            photo?.setValue(1, forKey: "user_likes")
+                    }
+//                    self.images?[self.indexPhoto].user_likes = 1
                 }, completion: nil)
             } else {
                 UIView.transition(with: heart, duration: 0.3, options: .transitionFlipFromTop, animations: {
                     self.heart.image = UIImage(named: "heart_empty")
-                    self.images[self.indexPhoto].user_likes = 0
+                    let photo = try? Realm().objects(Photo.self).filter("id == %@", self.images?[self.indexPhoto].id)
+                    try? Realm().write {
+                        photo?.setValue(0, forKey: "user_likes")
+                    }
+//                    self.images?[self.indexPhoto].user_likes = 0
                 }, completion: nil)
             }
         }
@@ -50,10 +60,10 @@ class SelectedImageView: UIViewController, UIScrollViewDelegate {
     }
     private func setImage (indexPhoto: Int) {
         self.imageView.transform = .identity
-        imageView.kf.setImage(with: URL(string: images[indexPhoto].urlString))
-        likeCounter.text = String(images[indexPhoto].likes)
-        repostCounter.text = String(images[indexPhoto].reposts)
-        images[indexPhoto].user_likes > 0 ? (self.liked = true) : (self.liked = false)
+        imageView.kf.setImage(with: URL(string: images![indexPhoto].urlString))
+        likeCounter.text = String(images![indexPhoto].likes)
+        repostCounter.text = String(images![indexPhoto].reposts)
+        images![indexPhoto].user_likes > 0 ? (self.liked = true) : (self.liked = false)
     }
     func addSwipe() {
         let swipeImage = UISwipeGestureRecognizer(target: self, action: #selector(swipeDown))
@@ -93,7 +103,8 @@ class SelectedImageView: UIViewController, UIScrollViewDelegate {
                         }, completion: nil)
                     }
                 }else {
-                    if self.indexPhoto < self.images.count-1 {
+                    guard let count = self.images?.count else {return}
+                    if self.indexPhoto < count-1 {
                         print(self.indexPhoto)
                         self.indexPhoto += 1
                         UIView.transition(with: self.imageView, duration: 0.5, options: .transitionFlipFromRight, animations: {
@@ -133,7 +144,8 @@ class SelectedImageView: UIViewController, UIScrollViewDelegate {
     }
     @objc private func swipeLeft (_ recognizer: UISwipeGestureRecognizer){
         if recognizer.state == .ended {
-            if indexPhoto < images.count-1 {
+            guard let count = self.images?.count else {return}
+            if indexPhoto < count-1 {
                 print(indexPhoto)
                 indexPhoto += 1
                 UIView.transition(with: imageView, duration: 0.5, options: .transitionFlipFromRight, animations: {
@@ -166,14 +178,14 @@ class SelectedImageView: UIViewController, UIScrollViewDelegate {
     }
     @objc private func like(_ recognizer: UITapGestureRecognizer){
         if recognizer.state == .recognized{
-            if images[indexPhoto].user_likes == 0 {
-                networkService.likesAdd(ownerId: images[indexPhoto].owner_id, itemId: images[indexPhoto].id, type: "photo") { [weak self] likes in
+            if images?[indexPhoto].user_likes == 0 {
+                networkService.likesAdd(ownerId: images![indexPhoto].owner_id, itemId: images![indexPhoto].id, type: "photo") { [weak self] likes in
                     guard let self = self else {return}
                     self.likeCounter.text = String(likes)
                     self.liked.toggle()
                 }
             } else {
-                networkService.likesDelete(ownerId: images[indexPhoto].owner_id, itemId: images[indexPhoto].id, type: "photo") { [weak self] likes in
+                networkService.likesDelete(ownerId: images![indexPhoto].owner_id, itemId: images![indexPhoto].id, type: "photo") { [weak self] likes in
                     guard let self = self else {return}
                     self.likeCounter.text = String(likes)
                     self.liked.toggle()

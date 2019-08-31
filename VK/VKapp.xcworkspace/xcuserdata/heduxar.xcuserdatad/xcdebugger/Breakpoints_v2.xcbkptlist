@@ -58,11 +58,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "VKapp/Models/User.swift"
-            timestampString = "588682161.821766"
+            timestampString = "588935248.092418"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "22"
-            endingLineNumber = "22"
+            startingLineNumber = "23"
+            endingLineNumber = "23"
             landmarkName = "init(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -74,12 +74,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "VKapp/Controllers/FriendsTableView.swift"
-            timestampString = "588679892.006012"
+            timestampString = "588935248.092512"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "101"
-            endingLineNumber = "101"
-            landmarkName = "tableView(_:cellForRowAt:)"
+            startingLineNumber = "66"
+            endingLineNumber = "66"
+            landmarkName = "prepare(for:sender:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -89,24 +89,8 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "VKapp/Controllers/FriendsTableView.swift"
-            timestampString = "588679892.0061181"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "63"
-            endingLineNumber = "63"
-            landmarkName = "prepare(for:sender:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
             filePath = "VKapp/Models/Photo.swift"
-            timestampString = "588682161.821892"
+            timestampString = "588935248.092589"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "13"
@@ -115,14 +99,134 @@
             landmarkType = "3">
             <Locations>
                <Location
-                  shouldBeEnabled = "Yes"
+                  shouldBeEnabled = "No"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "VKapp.Photo.deinit"
+                  symbolName = "VKapp.Photo.__allocating_init() -&gt; VKapp.Photo"
                   moduleName = "VKapp"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/heduxar/Documents/Geekbrais/VKApp/VKapp/VKapp/Models/Photo.swift"
-                  timestampString = "588682162.201329"
+                  timestampString = "588925697.830104"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "4">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "VKapp.Photo.init() -&gt; VKapp.Photo"
+                  moduleName = "VKapp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/heduxar/Documents/Geekbrais/VKApp/VKapp/VKapp/Models/Photo.swift"
+                  timestampString = "588925697.8363121"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "14"
+                  endingLineNumber = "14"
+                  offsetFromSymbolStart = "25">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "VKapp.Photo.__allocating_init(value: Any) -&gt; VKapp.Photo"
+                  moduleName = "VKapp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/heduxar/Documents/Geekbrais/VKApp/VKapp/VKapp/Models/Photo.swift"
+                  timestampString = "588925697.845381"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "4">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "VKapp.Photo.init(value: Any) -&gt; VKapp.Photo"
+                  moduleName = "VKapp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/heduxar/Documents/Geekbrais/VKApp/VKapp/VKapp/Models/Photo.swift"
+                  timestampString = "588925697.84949"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "14"
+                  endingLineNumber = "14"
+                  offsetFromSymbolStart = "37">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "VKapp.Photo.__allocating_init(realm: __C.RLMRealm, schema: __C.RLMObjectSchema) -&gt; VKapp.Photo"
+                  moduleName = "VKapp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/heduxar/Documents/Geekbrais/VKApp/VKapp/VKapp/Models/Photo.swift"
+                  timestampString = "588925697.8540291"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "4">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "VKapp.Photo.init(realm: __C.RLMRealm, schema: __C.RLMObjectSchema) -&gt; VKapp.Photo"
+                  moduleName = "VKapp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/heduxar/Documents/Geekbrais/VKApp/VKapp/VKapp/Models/Photo.swift"
+                  timestampString = "588925697.858505"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "14"
+                  endingLineNumber = "14"
+                  offsetFromSymbolStart = "47">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "VKapp.Photo.__allocating_init(value: Any, schema: __C.RLMSchema) -&gt; VKapp.Photo"
+                  moduleName = "VKapp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/heduxar/Documents/Geekbrais/VKApp/VKapp/VKapp/Models/Photo.swift"
+                  timestampString = "588925697.8624229"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "4">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "VKapp.Photo.init(value: Any, schema: __C.RLMSchema) -&gt; VKapp.Photo"
+                  moduleName = "VKapp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/heduxar/Documents/Geekbrais/VKApp/VKapp/VKapp/Models/Photo.swift"
+                  timestampString = "588925697.866576"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "14"
+                  endingLineNumber = "14"
+                  offsetFromSymbolStart = "47">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "VKapp.Photo.__ivar_destroyer"
+                  moduleName = "VKapp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/heduxar/Documents/Geekbrais/VKApp/VKapp/VKapp/Models/Photo.swift"
+                  timestampString = "588925697.8709019"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "0"
@@ -130,14 +234,14 @@
                   offsetFromSymbolStart = "16">
                </Location>
                <Location
-                  shouldBeEnabled = "Yes"
+                  shouldBeEnabled = "No"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
                   symbolName = "VKapp.Photo.__deallocating_deinit"
                   moduleName = "VKapp"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/heduxar/Documents/Geekbrais/VKApp/VKapp/VKapp/Models/Photo.swift"
-                  timestampString = "588682162.206818"
+                  timestampString = "588925697.8764549"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "0"
@@ -154,11 +258,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "VKapp/View/Cells/CollectionCell.swift"
-            timestampString = "588679892.0062931"
+            timestampString = "588935248.092662"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "15"
-            endingLineNumber = "15"
+            startingLineNumber = "16"
+            endingLineNumber = "16"
             landmarkName = "configurePhotos(with:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -170,11 +274,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "VKapp/Controllers/SelectedImageView.swift"
-            timestampString = "588679892.006369"
+            timestampString = "588935248.09273"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "56"
-            endingLineNumber = "56"
+            startingLineNumber = "66"
+            endingLineNumber = "66"
             landmarkName = "setImage(indexPhoto:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -241,6 +345,368 @@
             endingLineNumber = "120"
             landmarkName = "likesAdd(ownerId:itemId:type:complition:)"
             landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "VKapp/Controllers/UserImagesView.swift"
+            timestampString = "588935248.0934629"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "23"
+            endingLineNumber = "23"
+            landmarkName = "viewDidLoad()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "VKapp.UserImagesView.viewDidLoad() -&gt; ()"
+                  moduleName = "VKapp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/heduxar/Documents/Geekbrais/VKApp/VKapp/VKapp/Controllers/UserImagesView.swift"
+                  timestampString = "588932977.942559"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "23"
+                  endingLineNumber = "23"
+                  offsetFromSymbolStart = "88">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Array&lt;VKapp.Photo&gt;) -&gt; () in VKapp.UserImagesView.viewDidLoad() -&gt; ()"
+                  moduleName = "VKapp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/heduxar/Documents/Geekbrais/VKApp/VKapp/VKapp/Controllers/UserImagesView.swift"
+                  timestampString = "588932977.9463069"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "23"
+                  endingLineNumber = "23"
+                  offsetFromSymbolStart = "48">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "VKapp/Controllers/UserImagesView.swift"
+            timestampString = "588935248.0935349"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "24"
+            endingLineNumber = "24"
+            landmarkName = "viewDidLoad()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "VKapp/Controllers/SelectedImageView.swift"
+            timestampString = "588935248.093601"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "14"
+            endingLineNumber = "14"
+            landmarkName = "SelectedImageView"
+            landmarkType = "3">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "VKapp.SelectedImageView.userId.getter : Swift.Int"
+                  moduleName = "VKapp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/heduxar/Documents/Geekbrais/VKApp/VKapp/VKapp/Controllers/SelectedImageView.swift"
+                  timestampString = "588933541.059517"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "14"
+                  endingLineNumber = "14"
+                  offsetFromSymbolStart = "102">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "VKapp.SelectedImageView.userId.setter : Swift.Int"
+                  moduleName = "VKapp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/heduxar/Documents/Geekbrais/VKApp/VKapp/VKapp/Controllers/SelectedImageView.swift"
+                  timestampString = "588933541.063735"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "14"
+                  endingLineNumber = "14"
+                  offsetFromSymbolStart = "114">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "VKapp.SelectedImageView.init(nibName: Swift.Optional&lt;Swift.String&gt;, bundle: Swift.Optional&lt;__C.NSBundle&gt;) -&gt; VKapp.SelectedImageView"
+                  moduleName = "VKapp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/heduxar/Documents/Geekbrais/VKApp/VKapp/VKapp/Controllers/SelectedImageView.swift"
+                  timestampString = "588933541.06907"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "14"
+                  endingLineNumber = "14"
+                  offsetFromSymbolStart = "59">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "VKapp.SelectedImageView.init(coder: __C.NSCoder) -&gt; Swift.Optional&lt;VKapp.SelectedImageView&gt;"
+                  moduleName = "VKapp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/heduxar/Documents/Geekbrais/VKApp/VKapp/VKapp/Controllers/SelectedImageView.swift"
+                  timestampString = "588933541.0726039"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "14"
+                  endingLineNumber = "14"
+                  offsetFromSymbolStart = "52">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "VKapp/Controllers/SelectedImageView.swift"
+            timestampString = "588935248.094"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "16"
+            endingLineNumber = "16"
+            landmarkName = "SelectedImageView"
+            landmarkType = "3">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "VKapp.SelectedImageView.(images in _FCD9A9AA70631B6F13948FCE496B8A05).getter : Swift.Optional&lt;RealmSwift.Results&lt;VKapp.Photo&gt;&gt;"
+                  moduleName = "VKapp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/heduxar/Documents/Geekbrais/VKApp/VKapp/VKapp/Controllers/SelectedImageView.swift"
+                  timestampString = "588933541.085418"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "16"
+                  endingLineNumber = "16"
+                  offsetFromSymbolStart = "177">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "VKapp.SelectedImageView.(images in _FCD9A9AA70631B6F13948FCE496B8A05).setter : Swift.Optional&lt;RealmSwift.Results&lt;VKapp.Photo&gt;&gt;"
+                  moduleName = "VKapp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/heduxar/Documents/Geekbrais/VKApp/VKapp/VKapp/Controllers/SelectedImageView.swift"
+                  timestampString = "588933541.088394"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "16"
+                  endingLineNumber = "16"
+                  offsetFromSymbolStart = "128">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "VKapp.SelectedImageView.init(nibName: Swift.Optional&lt;Swift.String&gt;, bundle: Swift.Optional&lt;__C.NSBundle&gt;) -&gt; VKapp.SelectedImageView"
+                  moduleName = "VKapp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/heduxar/Documents/Geekbrais/VKApp/VKapp/VKapp/Controllers/SelectedImageView.swift"
+                  timestampString = "588933541.091882"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "16"
+                  endingLineNumber = "16"
+                  offsetFromSymbolStart = "250">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "VKapp.SelectedImageView.init(coder: __C.NSCoder) -&gt; Swift.Optional&lt;VKapp.SelectedImageView&gt;"
+                  moduleName = "VKapp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/heduxar/Documents/Geekbrais/VKApp/VKapp/VKapp/Controllers/SelectedImageView.swift"
+                  timestampString = "588933541.0957789"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "16"
+                  endingLineNumber = "16"
+                  offsetFromSymbolStart = "218">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "VKapp/Controllers/SelectedImageView.swift"
+            timestampString = "588935248.094358"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "15"
+            endingLineNumber = "15"
+            landmarkName = "SelectedImageView"
+            landmarkType = "3">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "VKapp.SelectedImageView.indexPhoto.getter : Swift.Int"
+                  moduleName = "VKapp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/heduxar/Documents/Geekbrais/VKApp/VKapp/VKapp/Controllers/SelectedImageView.swift"
+                  timestampString = "588933555.937561"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "15"
+                  endingLineNumber = "15"
+                  offsetFromSymbolStart = "102">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "VKapp.SelectedImageView.indexPhoto.setter : Swift.Int"
+                  moduleName = "VKapp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/heduxar/Documents/Geekbrais/VKApp/VKapp/VKapp/Controllers/SelectedImageView.swift"
+                  timestampString = "588933555.941498"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "15"
+                  endingLineNumber = "15"
+                  offsetFromSymbolStart = "114">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "VKapp.SelectedImageView.init(nibName: Swift.Optional&lt;Swift.String&gt;, bundle: Swift.Optional&lt;__C.NSBundle&gt;) -&gt; VKapp.SelectedImageView"
+                  moduleName = "VKapp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/heduxar/Documents/Geekbrais/VKApp/VKapp/VKapp/Controllers/SelectedImageView.swift"
+                  timestampString = "588933555.946229"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "15"
+                  endingLineNumber = "15"
+                  offsetFromSymbolStart = "171">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "VKapp.SelectedImageView.init(coder: __C.NSCoder) -&gt; Swift.Optional&lt;VKapp.SelectedImageView&gt;"
+                  moduleName = "VKapp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/heduxar/Documents/Geekbrais/VKApp/VKapp/VKapp/Controllers/SelectedImageView.swift"
+                  timestampString = "588933555.950755"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "15"
+                  endingLineNumber = "15"
+                  offsetFromSymbolStart = "140">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "VKapp/Controllers/SelectedImageView.swift"
+            timestampString = "588935273.251261"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "45"
+            endingLineNumber = "45"
+            landmarkName = "liked"
+            landmarkType = "24">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "VKapp/Controllers/SelectedImageView.swift"
+            timestampString = "588935304.329923"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "37"
+            endingLineNumber = "37"
+            landmarkName = "liked"
+            landmarkType = "24">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 () -&gt; () in VKapp.SelectedImageView.(liked in _FCD9A9AA70631B6F13948FCE496B8A05).didset : Swift.Bool"
+                  moduleName = "VKapp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/heduxar/Documents/Geekbrais/VKApp/VKapp/VKapp/Controllers/SelectedImageView.swift"
+                  timestampString = "588935304.338704"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "37"
+                  endingLineNumber = "37"
+                  offsetFromSymbolStart = "1407">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 () -&gt; () in closure #1 () -&gt; () in VKapp.SelectedImageView.(liked in _FCD9A9AA70631B6F13948FCE496B8A05).didset : Swift.Bool"
+                  moduleName = "VKapp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/heduxar/Documents/Geekbrais/VKApp/VKapp/VKapp/Controllers/SelectedImageView.swift"
+                  timestampString = "588935304.342196"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "37"
+                  endingLineNumber = "37"
+                  offsetFromSymbolStart = "171">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

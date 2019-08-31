@@ -8,6 +8,7 @@
 
 import UIKit
 import Kingfisher
+import RealmSwift
 
 
 class FriendsTableView: UIViewController {
@@ -16,7 +17,8 @@ class FriendsTableView: UIViewController {
     @IBOutlet var lettersStackView: UIStackView!
     
     let networkService = NetworkService()
-    private var usernames = [User]()
+//    private var usernames = [User]()
+    private lazy var usernames = try? Realm().objects(User.self)
     var firstLetters =  [Character]()
     var sortedUsers: [Character: [User]] = [:]
     
@@ -26,9 +28,10 @@ class FriendsTableView: UIViewController {
         tableView.register(MainTableCellNib, forCellReuseIdentifier: "MainTableCell")
         networkService.getFriends { [weak self] users in
             guard let self = self else {return}
-            self.usernames = users
-            
-            (self.firstLetters, self.sortedUsers) = (self.sortUsers(self.usernames))
+            try? RealmProvider.save(items: users)
+//            self.usernames = users
+            guard let users = self.usernames else {preconditionFailure("Empty array!")}
+            (self.firstLetters, self.sortedUsers) = (self.sortUsers(users))
             self.createStackView(self.firstLetters)
             self.tableView.reloadData()
         }
@@ -61,9 +64,6 @@ class FriendsTableView: UIViewController {
                 let selectedUser = usersByChar[indexPath.row]
                 if let userImagesVC = segue.destination as? UserImagesView{
                     userImagesVC.userId = selectedUser.id
-//                    userImagesVC.images.append(contentsOf: selectedUser.images)
-//                    guard selectedUser.avatar != nil else {return}
-//                    userImagesVC.images.append(selectedUser.avatar ?? UIImage(named: "file")!)
                 }
             }
         }
@@ -100,8 +100,6 @@ extension FriendsTableView: UITableViewDataSource{
         let letter = firstLetters[indexPath.section]
         if let user = sortedUsers[letter]{
             cell.configureUser(with: user[indexPath.row])
-//            cell.avatar.image = user[indexPath.row].avatar
-//            cell.name.text = (user[indexPath.row].name+" "+user[indexPath.row].surname)
             UIView.transition(with: cell, duration: 1, options: .transitionFlipFromBottom, animations: {
                 cell.avatar.transform = CGAffineTransform (scaleX: 0.6, y: 0.6)
             }, completion: {_ in
@@ -118,12 +116,12 @@ extension FriendsTableView: UITableViewDataSource{
     
     /// Sort users by surname and groups them by first letter.
     ///
-    /// - Parameter users: Array of users
+    /// - Parameter users: Realm results of users
     /// - Returns: Tuple (style like FirstSurnameLetter:Users)
-    func sortUsers (_ users: [User]) -> (character: [Character], sortedUsers: [Character: [User]]){
+    func sortUsers (_ users: Results<User>) -> (character: [Character], sortedUsers: [Character: [User]]){
         var characters = [Character]()
         var sortedUsers = [Character: [User]]()
-        usernames.forEach { user in
+        usernames?.forEach { user in
             guard let firstLetter = user.last_name.first else {return}
             if var letterInUsers = sortedUsers[firstLetter]{
                 letterInUsers.append(user)
