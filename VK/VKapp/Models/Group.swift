@@ -15,6 +15,8 @@ class Group: Object {
     @objc dynamic var name: String = ""
     @objc dynamic var avatar: String = ""
     @objc dynamic var member: Int = 0
+    var user = LinkingObjects(fromType: User.self, property: "groups")
+    
     convenience init(_ json: JSON) {
         self.init()
         self.id = json["id"].intValue

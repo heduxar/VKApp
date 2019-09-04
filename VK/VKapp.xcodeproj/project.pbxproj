@@ -44,6 +44,8 @@
 		B4CB9796230D799600B31527 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4CB9795230D799600B31527 /* WebKit.framework */; };
 		B4CB97982312750400B31527 /* Photo.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4CB97972312750400B31527 /* Photo.swift */; };
 		B4CB979A231A481D00B31527 /* RealmProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4CB9799231A481C00B31527 /* RealmProvider.swift */; };
+		B4CB979D231E4C9C00B31527 /* UIViewController+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4CB979C231E4C9C00B31527 /* UIViewController+Ext.swift */; };
+		B4CB97A0231E51E600B31527 /* UITableView+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4CB979F231E51E500B31527 /* UITableView+Ext.swift */; };
 		B4F38D6922E74ED3006210F3 /* NewsTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4F38D6822E74ED3006210F3 /* NewsTableView.swift */; };
 /* End PBXBuildFile section */
 
@@ -88,6 +90,8 @@
 		B4CB9795230D799600B31527 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
 		B4CB97972312750400B31527 /* Photo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Photo.swift; sourceTree = "<group>"; };
 		B4CB9799231A481C00B31527 /* RealmProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RealmProvider.swift; sourceTree = "<group>"; };
+		B4CB979C231E4C9C00B31527 /* UIViewController+Ext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Ext.swift"; sourceTree = "<group>"; };
+		B4CB979F231E51E500B31527 /* UITableView+Ext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITableView+Ext.swift"; sourceTree = "<group>"; };
 		B4F38D6822E74ED3006210F3 /* NewsTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = NewsTableView.swift; path = VKapp/Controllers/NewsTableView.swift; sourceTree = SOURCE_ROOT; };
 		CBC18D0088BC5CF49B2EF79C /* Pods_VKapp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_VKapp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -214,6 +218,7 @@
 			isa = PBXGroup;
 			children = (
 				B4AE9ACB22C49DE30005822D /* AppDelegate.swift */,
+				B4CB979E231E4CA600B31527 /* Extensions */,
 				B4CB979B231A483B00B31527 /* Services */,
 				B43F759022D0D5220012DBCC /* Models */,
 				B43F758F22D0D5190012DBCC /* View */,
@@ -230,6 +235,15 @@
 				B4CB9793230938A300B31527 /* NetworkService.swift */,
 			);
 			path = Services;
+			sourceTree = "<group>";
+		};
+		B4CB979E231E4CA600B31527 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				B4CB979C231E4C9C00B31527 /* UIViewController+Ext.swift */,
+				B4CB979F231E51E500B31527 /* UITableView+Ext.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 		EEFF912AAAC9ABDED96ABE55 /* Frameworks */ = {
@@ -362,6 +376,7 @@
 			files = (
 				B4CB97982312750400B31527 /* Photo.swift in Sources */,
 				B4B76D6F23054D5300432A6B /* LoginVK.swift in Sources */,
+				B4CB979D231E4C9C00B31527 /* UIViewController+Ext.swift in Sources */,
 				B41E0ADA22FAC96A0046527F /* ScaleUpAnimator.swift in Sources */,
 				B41543B522CF58560056B2DC /* FriendsTableView.swift in Sources */,
 				B41CF43122E0597200CD50C5 /* AvatarImage.swift in Sources */,
@@ -371,6 +386,7 @@
 				B4AE9ACE22C49DE30005822D /* LoginControllerView.swift in Sources */,
 				B41E0AD822FAC5AA0046527F /* AnimatedLoadings.swift in Sources */,
 				B41CF43922E05AAF00CD50C5 /* GradientForViews.swift in Sources */,
+				B4CB97A0231E51E600B31527 /* UITableView+Ext.swift in Sources */,
 				B41543C122D08F210056B2DC /* Group.swift in Sources */,
 				B470FC9D22F4348000C15FEB /* CustomNavShow+Back.swift in Sources */,
 				B499CF3D22DF550B00EE232E /* SelectedImageView.swift in Sources */,
