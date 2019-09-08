@@ -8,6 +8,7 @@
 
 import UIKit
 import WebKit
+import FirebaseAuth
 
 class LoginVK: UIViewController {
     
@@ -66,6 +67,13 @@ extension LoginVK: WKNavigationDelegate  {
         
         Session.session.token = token
         Session.session.userID = userIdInt
+        Auth.auth().signInAnonymously { [weak self] (result, error) in
+            if let error = error {
+                self?.show(error)
+            } else {
+                Session.session.fireBaseUid = result?.user.uid
+            }
+        }
         performSegue(withIdentifier:"LoginTrueSegue", sender: Any?.self)
         
         decisionHandler(.cancel)

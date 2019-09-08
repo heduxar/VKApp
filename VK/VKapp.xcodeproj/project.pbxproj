@@ -28,6 +28,8 @@
 		B455572922ECEF1B0024BA97 /* LayoutForCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = B455572822ECEF1B0024BA97 /* LayoutForCollection.swift */; };
 		B470FC9B22F432C000C15FEB /* CustomNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B470FC9A22F432C000C15FEB /* CustomNavigationController.swift */; };
 		B470FC9D22F4348000C15FEB /* CustomNavShow+Back.swift in Sources */ = {isa = PBXBuildFile; fileRef = B470FC9C22F4348000C15FEB /* CustomNavShow+Back.swift */; };
+		B48B34872324F87500804DF3 /* String+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = B48B34862324F87500804DF3 /* String+Ext.swift */; };
+		B48B348923250BFA00804DF3 /* Date+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = B48B348823250BFA00804DF3 /* Date+Ext.swift */; };
 		B48C386122CCBE70001D9232 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B48C385F22CCBE70001D9232 /* Main.storyboard */; };
 		B499CF3B22DF442800EE232E /* CollectionImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = B499CF3A22DF442800EE232E /* CollectionImage.swift */; };
 		B499CF3D22DF550B00EE232E /* SelectedImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B499CF3C22DF550B00EE232E /* SelectedImageView.swift */; };
@@ -46,6 +48,7 @@
 		B4CB979A231A481D00B31527 /* RealmProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4CB9799231A481C00B31527 /* RealmProvider.swift */; };
 		B4CB979D231E4C9C00B31527 /* UIViewController+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4CB979C231E4C9C00B31527 /* UIViewController+Ext.swift */; };
 		B4CB97A0231E51E600B31527 /* UITableView+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4CB979F231E51E500B31527 /* UITableView+Ext.swift */; };
+		B4CB97A22324E51100B31527 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B4CB97A12324E51100B31527 /* GoogleService-Info.plist */; };
 		B4F38D6922E74ED3006210F3 /* NewsTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4F38D6822E74ED3006210F3 /* NewsTableView.swift */; };
 /* End PBXBuildFile section */
 
@@ -72,6 +75,8 @@
 		B455572822ECEF1B0024BA97 /* LayoutForCollection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LayoutForCollection.swift; sourceTree = "<group>"; };
 		B470FC9A22F432C000C15FEB /* CustomNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomNavigationController.swift; sourceTree = "<group>"; };
 		B470FC9C22F4348000C15FEB /* CustomNavShow+Back.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "CustomNavShow+Back.swift"; path = "VKapp/Controllers/CustomNavShow+Back.swift"; sourceTree = SOURCE_ROOT; };
+		B48B34862324F87500804DF3 /* String+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Ext.swift"; sourceTree = "<group>"; };
+		B48B348823250BFA00804DF3 /* Date+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Ext.swift"; sourceTree = "<group>"; };
 		B48C386022CCBE70001D9232 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		B499CF3A22DF442800EE232E /* CollectionImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionImage.swift; sourceTree = "<group>"; };
 		B499CF3C22DF550B00EE232E /* SelectedImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectedImageView.swift; sourceTree = "<group>"; };
@@ -92,6 +97,7 @@
 		B4CB9799231A481C00B31527 /* RealmProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RealmProvider.swift; sourceTree = "<group>"; };
 		B4CB979C231E4C9C00B31527 /* UIViewController+Ext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Ext.swift"; sourceTree = "<group>"; };
 		B4CB979F231E51E500B31527 /* UITableView+Ext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITableView+Ext.swift"; sourceTree = "<group>"; };
+		B4CB97A12324E51100B31527 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		B4F38D6822E74ED3006210F3 /* NewsTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = NewsTableView.swift; path = VKapp/Controllers/NewsTableView.swift; sourceTree = SOURCE_ROOT; };
 		CBC18D0088BC5CF49B2EF79C /* Pods_VKapp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_VKapp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -224,6 +230,7 @@
 				B43F758F22D0D5190012DBCC /* View */,
 				B43F758D22D0D4EB0012DBCC /* Controllers */,
 				B4AE9AD722C49DE50005822D /* Info.plist */,
+				B4CB97A12324E51100B31527 /* GoogleService-Info.plist */,
 			);
 			path = VKapp;
 			sourceTree = "<group>";
@@ -241,6 +248,8 @@
 			isa = PBXGroup;
 			children = (
 				B4CB979C231E4C9C00B31527 /* UIViewController+Ext.swift */,
+				B48B34862324F87500804DF3 /* String+Ext.swift */,
+				B48B348823250BFA00804DF3 /* Date+Ext.swift */,
 				B4CB979F231E51E500B31527 /* UITableView+Ext.swift */,
 			);
 			path = Extensions;
@@ -316,6 +325,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B4A9BCE522EB866100A43CAF /* NewsCell.xib in Resources */,
+				B4CB97A22324E51100B31527 /* GoogleService-Info.plist in Resources */,
 				B4B76D6D23054D2500432A6B /* LoginVK.storyboard in Resources */,
 				B41CF43F22E4AEA400CD50C5 /* inside.storyboard in Resources */,
 				B41CF43D22E0684600CD50C5 /* MainTableCell.xib in Resources */,
@@ -379,6 +389,8 @@
 				B4CB979D231E4C9C00B31527 /* UIViewController+Ext.swift in Sources */,
 				B41E0ADA22FAC96A0046527F /* ScaleUpAnimator.swift in Sources */,
 				B41543B522CF58560056B2DC /* FriendsTableView.swift in Sources */,
+				B48B34872324F87500804DF3 /* String+Ext.swift in Sources */,
+				B48B348923250BFA00804DF3 /* Date+Ext.swift in Sources */,
 				B41CF43122E0597200CD50C5 /* AvatarImage.swift in Sources */,
 				B4F38D6922E74ED3006210F3 /* NewsTableView.swift in Sources */,
 				B41CF43322E0598100CD50C5 /* AvatarBackShadow.swift in Sources */,

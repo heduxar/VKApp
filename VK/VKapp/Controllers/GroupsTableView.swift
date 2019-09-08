@@ -8,12 +8,19 @@
 
 import UIKit
 import RealmSwift
+import FirebaseFirestore
 
 class GroupsTableView: UITableViewController {
     @IBOutlet weak var groupSearch: UISearchBar!
     var searching = false {
         didSet {
             self.tableView.reloadData()
+        }
+    }
+    var saved = false {
+        didSet {
+            let timer = DispatchTime.now() + 5
+            DispatchQueue.main.asyncAfter(deadline: timer){self.saved = false}
         }
     }
     var searchingText = ""{
@@ -45,7 +52,8 @@ class GroupsTableView: UITableViewController {
             case .initial:
                 self.tableView.reloadData()
             case .update(_, let deletions, let insertions, let modifications):
-                self.tableView.update(deletions: deletions, insertions: insertions, modifications: modifications)
+                // Проблема с поиском при задействовании с вышестоящими условиями=(
+                self.tableView.reloadData()
             case .error(let error):
                 self.show(error)
             }
@@ -76,6 +84,12 @@ extension GroupsTableView: UISearchBarDelegate{
             guard let self = self else {return}
             try? RealmProvider.save(items: groups)
             self.searchingText = searchText
+            let timer = DispatchTime.now() + 5
+            if !self.saved{
+                self.saved = true
+                DispatchQueue.main.asyncAfter(deadline: timer){self.saveToFirestore(self.searchingText)}
+            }
+            
             self.searchingText.count > 0 ? (self.searching = true) : (self.searching = false)
         }
     }
@@ -83,5 +97,25 @@ extension GroupsTableView: UISearchBarDelegate{
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         searching = false
         searchBar.text = ""
+    }
+    
+    
+    func saveToFirestore(_ request: String) {
+        let firestore = Firestore.firestore()
+        
+        let requstToSend = request.FirestoreArray(request)
+        
+        
+        guard let uid = Session.session.fireBaseUid else {return}
+        firestore
+            .collection("requests")
+            .document(uid)
+            .setData (requstToSend, merge: true) { [weak self] error in
+                if let error = error {
+                    self?.show(error)
+                } else {
+                    print("Data saved")
+                }
+        }
     }
 }
