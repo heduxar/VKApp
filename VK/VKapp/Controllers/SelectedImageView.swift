@@ -53,14 +53,11 @@ class SelectedImageView: UIViewController, UIScrollViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         setImage(indexPhoto: indexPhoto)
-        //        imageView.kf.setImage(with: URL(string: images[indexPhoto].urlString))
-        //        likeCounter.text = String(images[indexPhoto].likes)
-        //        repostCounter.text = String(images[indexPhoto].reposts)
         addSwipe()
     }
     private func setImage (indexPhoto: Int) {
         self.imageView.transform = .identity
-        imageView.kf.setImage(with: URL(string: images![indexPhoto].urlString))
+        imageView.kf.setImage(with: URL(string: images![indexPhoto].urlBigPhoto))
         likeCounter.text = String(images![indexPhoto].likes)
         repostCounter.text = String(images![indexPhoto].reposts)
         images![indexPhoto].user_likes > 0 ? (self.liked = true) : (self.liked = false)

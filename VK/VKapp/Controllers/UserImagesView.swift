@@ -23,7 +23,12 @@ class UserImagesView: UICollectionViewController {
         networkService.getPhotos(userId: userId) { [weak self] photos in
             try? RealmProvider.save(items: photos)
 //            self.images = photos
-            self?.collectionView.reloadData()
+            guard let self = self,
+                let user = try? Realm().objects(User.self).filter("id == %@", self.userId).first else {return}
+            try? Realm().write {
+                user?.images.append(objectsIn: photos)
+            }
+            self.collectionView.reloadData()
         }
     }
 //

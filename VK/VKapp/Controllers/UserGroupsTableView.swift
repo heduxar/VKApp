@@ -15,38 +15,69 @@ class UserGroupsTableView: UITableViewController {
     lazy var searchingText = [Group]()
     var searching = false
     let networkService = NetworkService()
-//    private var myGroups = [Group]()
     private lazy var myGroups = try? Realm().objects(Group.self).filter("member == %@", 1)
+    private var notificationToken: NotificationToken?
     
     @IBAction func addGroup (_ segue: UIStoryboardSegue) {
         guard let allGroupsVC = segue.source as? GroupsTableView,
             let indexPath = allGroupsVC.tableView.indexPathForSelectedRow else { return }
-        let newGroup = allGroupsVC.allGroups[indexPath.row]
-//        guard !myGroups.contains(where: { myGroups -> Bool in
-//            myGroups.name == newGroup.name
-//        }) else {return}
-//        myGroups.append(newGroup)
-        tableView.reloadData()
+        let newGroup = allGroupsVC.allGroups?[indexPath.row]
+        let member = myGroups?.contains(where: { myGroups -> Bool in
+            myGroups.name == newGroup?.name
+        }) ?? false
+        guard !member else {return}
+        networkService.joinGroup(groupId: allGroupsVC.allGroups?[indexPath.row].id ?? 0) {[weak self] response in
+            let group = try? Realm().objects(Group.self).filter("id == %@", allGroupsVC.allGroups?[indexPath.row].id)
+            try? Realm().write {
+                group?.setValue(response, forKey: "member")
+            }
+        }
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         let MainTableCellNib = UINib (nibName: "MainTableCell", bundle: nil)
         tableView.register(MainTableCellNib, forCellReuseIdentifier: "MainTableCell")
-        networkService.getGroups(){ [weak self] groups in
+        networkService.getGroups(){ groups in
             try? RealmProvider.save(items: groups)
-//            self?.myGroups = groups
-            self?.tableView.reloadData()
+        }
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        notificationToken = myGroups?.observe {[weak self] change in
+            guard let self = self else { return }
+            switch change {
+            case .initial:
+                self.tableView.reloadData()
+            case .update(_, let deletions, let insertions, let modifications):
+                self.tableView.update(deletions: deletions, insertions: insertions, modifications: modifications)
+            case .error(let error):
+                self.show(error)
             }
+        }
+    }
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        notificationToken?.invalidate()
     }
     
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-//            myGroups.remove(at: indexPath.row)
-            tableView.deleteRows(at: [indexPath], with: .bottom)
+            guard let groupId = myGroups?[indexPath.row].id else {return}
+            networkService.leaveGroup(groupId: groupId){[weak self]
+                response in
+                guard let self = self else {return}
+                let group = try? Realm().objects(Group.self).filter("id == %@", self.myGroups?[indexPath.row].id)
+                if response > 0 {
+                    try? Realm().write {
+                        group?.setValue(0, forKey: "member")
+                    }
+                }
+            }
         }
     }
-
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if searching { return searchingText.count} else { return myGroups?.count ?? 0}
     }

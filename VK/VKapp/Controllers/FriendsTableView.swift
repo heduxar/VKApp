@@ -17,8 +17,8 @@ class FriendsTableView: UIViewController {
     @IBOutlet var lettersStackView: UIStackView!
     
     let networkService = NetworkService()
-//    private var usernames = [User]()
     private lazy var usernames = try? Realm().objects(User.self)
+    private var notificationToken: NotificationToken?
     var firstLetters =  [Character]()
     var sortedUsers: [Character: [User]] = [:]
     
@@ -29,12 +29,28 @@ class FriendsTableView: UIViewController {
         networkService.getFriends { [weak self] users in
             guard let self = self else {return}
             try? RealmProvider.save(items: users)
-//            self.usernames = users
-            guard let users = self.usernames else {preconditionFailure("Empty array!")}
+//            guard let users = self.usernames else {preconditionFailure("Empty array!")}
             (self.firstLetters, self.sortedUsers) = (self.sortUsers(users))
             self.createStackView(self.firstLetters)
-            self.tableView.reloadData()
         }
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        notificationToken = usernames?.observe { [weak self] change in
+            guard let self = self else { return }
+            switch change {
+            case .initial:
+                self.tableView.reloadData()
+            case .update:
+                self.tableView.reloadData()
+            case .error(let error):
+                self.show(error)
+            }
+        }
+    }
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        notificationToken?.invalidate()
     }
     
     func createStackView(_ letters: [Character]) {
@@ -118,7 +134,7 @@ extension FriendsTableView: UITableViewDataSource{
     ///
     /// - Parameter users: Realm results of users
     /// - Returns: Tuple (style like FirstSurnameLetter:Users)
-    func sortUsers (_ users: Results<User>) -> (character: [Character], sortedUsers: [Character: [User]]){
+    func sortUsers (_ users: [User]) -> (character: [Character], sortedUsers: [Character: [User]]){
         var characters = [Character]()
         var sortedUsers = [Character: [User]]()
         usernames?.forEach { user in

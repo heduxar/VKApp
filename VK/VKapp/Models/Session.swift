@@ -10,5 +10,6 @@ class Session {
     public static let session = Session()
     var token: String?
     var userID: Int?
+    var fireBaseUid: String?
     private init() {}
 }
