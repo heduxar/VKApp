@@ -230,4 +230,29 @@ class NetworkService {
         }
     }
     
+    func getNews(searchText:String, complition: @escaping ([News]) -> Void){
+        let path = "/method/newsfeed.get"
+        guard let token = Session.session.token else {preconditionFailure("Empty token!")}
+        let params: Parameters = [
+            "access_token": token,
+            "count" : 50,
+//            "extended": 1,
+//            "q" : searchText,
+//            "sort" : 3,
+            "v": "5.101"
+        ]
+        NetworkService.session.request(self.baseUrl + path, method: .get, parameters: params).responseJSON { response in
+            switch response.result {
+            case .success(let value):
+                let json = JSON(value)
+                let newsJSONs = json["response"].arrayValue
+                let news = newsJSONs.map {News($0)}
+                complition(news)
+            case .failure(let err):
+                print(err)
+                complition([])
+            }
+        }
+    }
+    
 }

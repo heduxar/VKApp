@@ -29,7 +29,7 @@ class FriendsTableView: UIViewController {
         networkService.getFriends { [weak self] users in
             guard let self = self else {return}
             try? RealmProvider.save(items: users)
-            guard let users = self.usernames else {preconditionFailure("Empty array!")}
+//            guard let users = self.usernames else {preconditionFailure("Empty array!")}
             (self.firstLetters, self.sortedUsers) = (self.sortUsers(users))
             self.createStackView(self.firstLetters)
         }
@@ -134,7 +134,7 @@ extension FriendsTableView: UITableViewDataSource{
     ///
     /// - Parameter users: Realm results of users
     /// - Returns: Tuple (style like FirstSurnameLetter:Users)
-    func sortUsers (_ users: Results<User>) -> (character: [Character], sortedUsers: [Character: [User]]){
+    func sortUsers (_ users: [User]) -> (character: [Character], sortedUsers: [Character: [User]]){
         var characters = [Character]()
         var sortedUsers = [Character: [User]]()
         usernames?.forEach { user in
