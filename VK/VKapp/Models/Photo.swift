@@ -13,11 +13,13 @@ import RealmSwift
 class Photo: Object {
     @objc dynamic var id: Int = 0
     @objc dynamic var owner_id: Int = 0
-    @objc dynamic var urlString: String = ""
+    @objc dynamic var urlSmallPhoto: String = ""
+    @objc dynamic var urlBigPhoto: String = ""
     @objc dynamic var text: String = ""
     @objc dynamic var likes: Int = 0
     @objc dynamic var user_likes: Int = 0
     @objc dynamic var reposts: Int = 0
+    var user = LinkingObjects(fromType: User.self, property: "images")
     
     convenience init (_ json:JSON){
         self.init()
@@ -29,7 +31,8 @@ class Photo: Object {
             let newPoints = newSize["width"].intValue + newSize["height"].intValue
             return currentPoints >= newPoints ? currentSize : newSize
         }
-        self.urlString = biggestSize["url"].stringValue
+        self.urlSmallPhoto = sizes[0]["url"].stringValue
+        self.urlBigPhoto = biggestSize["url"].stringValue
         self.text = json["text"].stringValue
         self.likes = json["likes"]["count"].intValue
         self.user_likes = json["likes"]["user_likes"].intValue

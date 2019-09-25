@@ -13,14 +13,16 @@
         <!--News-->
         <scene sceneID="gYq-it-kzP">
             <objects>
-                <tableViewController id="exn-Ke-FRm" customClass="NewsTableView" customModule="VKapp" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="7Tf-Gu-gfa">
+                <tableViewController id="exn-Ke-FRm" customClass="NewsTableViewController" customModule="VKapp" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleAspectFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" dataMode="prototypes" style="grouped" separatorStyle="singleLineEtched" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="1" sectionFooterHeight="1" id="7Tf-Gu-gfa">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" red="0.048615718939999997" green="0.5" blue="0.48835309919999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <color key="tintColor" red="0.30434212090000001" green="0.89264518020000005" blue="0.87666523460000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="sectionIndexBackgroundColor" red="0.30434212090000001" green="0.89264518020000005" blue="0.87666523460000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleAspectFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="NewsCell" id="jf2-zO-ga0" customClass="NewsCell" customModule="VKapp" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                <rect key="frame" x="0.0" y="55.5" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="jf2-zO-ga0" id="lUR-Cz-6q9">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
@@ -53,7 +55,7 @@
         <!--Friends-->
         <scene sceneID="fOr-bK-HmH">
             <objects>
-                <viewController id="yJV-bb-Tyt" customClass="FriendsTableView" customModule="VKapp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="yJV-bb-Tyt" customClass="FriendsTableViewController" customModule="VKapp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="kUh-sb-KGO">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -116,10 +118,10 @@
             </objects>
             <point key="canvasLocation" x="1868" y="113.79310344827587"/>
         </scene>
-        <!--User Images View-->
+        <!--User Images View Controller-->
         <scene sceneID="ZgT-D0-AIn">
             <objects>
-                <collectionViewController id="EeY-sp-gHN" customClass="UserImagesView" customModule="VKapp" customModuleProvider="target" sceneMemberID="viewController">
+                <collectionViewController id="EeY-sp-gHN" customClass="UserImagesViewController" customModule="VKapp" customModuleProvider="target" sceneMemberID="viewController">
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="9pc-6P-vw4">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -166,10 +168,10 @@
             </objects>
             <point key="canvasLocation" x="2828" y="113.79310344827587"/>
         </scene>
-        <!--Selected Image View-->
+        <!--Selected Image View Controller-->
         <scene sceneID="h1L-fQ-J9M">
             <objects>
-                <viewController storyboardIdentifier="bigImageView" id="pjq-zM-Dkp" customClass="SelectedImageView" customModule="VKapp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="bigImageView" id="pjq-zM-Dkp" customClass="SelectedImageViewController" customModule="VKapp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="SkT-E5-lKQ">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -310,7 +312,7 @@
         <!--Groups-->
         <scene sceneID="CFW-KR-XeZ">
             <objects>
-                <tableViewController id="FvV-hj-p8V" customClass="UserGroupsTableView" customModule="VKapp" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="FvV-hj-p8V" customClass="UserGroupsTableViewController" customModule="VKapp" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="5m5-Wf-dpz">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -361,10 +363,10 @@
             </objects>
             <point key="canvasLocation" x="1868" y="773.16341829085468"/>
         </scene>
-        <!--Groups Table View-->
+        <!--Groups Table View Controller-->
         <scene sceneID="lev-TO-7Eh">
             <objects>
-                <tableViewController id="mXn-Rs-Lci" customClass="GroupsTableView" customModule="VKapp" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="mXn-Rs-Lci" customClass="GroupsTableViewController" customModule="VKapp" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="FLa-10-Uig">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
