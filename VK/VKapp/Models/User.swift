@@ -15,12 +15,17 @@ class User: Object {
     @objc dynamic var avatar: String = ""
     @objc dynamic var first_name: String = ""
     @objc dynamic var last_name: String = ""
-    convenience init(_ json: JSON) {
+    let images = List<Photo>()
+    let groups = List<Group>()
+    
+    convenience init(_ json: JSON, images: [Photo] = [], groups : [Group] = []) {
         self.init()
         self.id = json["id"].intValue
-        self.avatar = json["photo_200_orig"].stringValue
+        self.avatar = json["photo_200"].stringValue
         self.first_name = json["first_name"].stringValue
         self.last_name = json["last_name"].stringValue
+        self.images.append(objectsIn: images)
+        self.groups.append(objectsIn: groups)
     }
     override static func primaryKey() -> String? {
         return "id"
