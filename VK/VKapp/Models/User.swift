@@ -21,7 +21,7 @@ class User: Object {
     convenience init(_ json: JSON, images: [Photo] = [], groups : [Group] = []) {
         self.init()
         self.id = json["id"].intValue
-        self.avatar = json["photo_200_orig"].stringValue
+        self.avatar = json["photo_200"].stringValue
         self.first_name = json["first_name"].stringValue
         self.last_name = json["last_name"].stringValue
         self.images.append(objectsIn: images)

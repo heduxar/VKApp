@@ -14,8 +14,9 @@ class News: Object {
     @objc dynamic var sourceId: Int = 0
     @objc dynamic var postId: Int = 0
     @objc dynamic var date: Double = 0
-//    @objc dynamic var type: String = ""
+    @objc dynamic var type: String = ""
     @objc dynamic var newsText: String = ""
+    var photoAttachments = List<Photo>()
 //    var attachment = List<Photo>() {
 //        didSet {
 //            numberOfRows += 1
@@ -32,7 +33,7 @@ class News: Object {
         self.init()
         self.sourceId = json["source_id"].intValue
         self.postId = json["post_id"].intValue
-//        self.type = json["type"].stringValue
+        self.type = json["type"].stringValue
         self.newsText = json["text"].stringValue
         self.date = json["date"].doubleValue
         self.commentsCount = json["comments"]["count"].intValue
@@ -40,6 +41,33 @@ class News: Object {
         self.userLike = json["likes"]["user_likes"].intValue
         self.repostsCount = json["reposts"]["count"].intValue
         self.views = json["views"]["count"].intValue
+        let attachmentsJSONs = json["attachments"].arrayValue
+        if attachmentsJSONs.count != 0 &&
+            attachmentsJSONs[0]["type"].stringValue == "photo"
+        {
+            let test = attachmentsJSONs.map {Photo($0)}
+            photoAttachments.append (objectsIn: test)
+        }
+        
+        //        attachmentsJSONs.map { (JSON) -> Photo in
+        //
+        //
+        //        }
+        //        attachmentsJSONs.forEach { attachment in
+        //            if attachment["type"].stringValue == "photo"{
+        //                let photo = attachment["photo"]
+        //                photo.forEach {
+        //                    Photo.init(photo)}
+        //            }
+        //        }
+//        photoAttachments.append(objectsIn: attachmentsJSONs.map {Photo($0)})
+//        photoAttachments.append(objectsIn: attachmentsJSONs.map {Photo($0)})
+//        attachmentsJSONs.forEach { type in
+//            if type["type"].stringValue == "photo" {
+//                photoAttachments.append(objectsIn: type.map {Photo ($0)})
+//            }
+//        }
+       
 
         
         

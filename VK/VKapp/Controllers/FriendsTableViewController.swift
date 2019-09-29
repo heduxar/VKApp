@@ -26,13 +26,17 @@ class FriendsTableViewController: UIViewController {
         super.viewDidLoad()
         let MainTableCellNib = UINib (nibName: "MainTableCell", bundle: nil)
         self.tableView.register(MainTableCellNib, forCellReuseIdentifier: "MainTableCell")
-        DispatchQueue.global().async (flags: .barrier) {
+        let dispatchGroup = DispatchGroup()
+        DispatchQueue.global().async (group: dispatchGroup) {
             self.networkService.getFriends() { [weak self] users in
                 guard let self = self else {return}
                 try? RealmProvider.save(items: users)
                 (self.firstLetters, self.sortedUsers) = (self.sortUsers(users))
                 self.createStackView(self.firstLetters)
             }
+        }
+        dispatchGroup.notify(queue: DispatchQueue.main) {
+            self.tableView.reloadData()
         }
     }
     override func viewWillAppear(_ animated: Bool) {

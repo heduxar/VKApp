@@ -11,7 +11,8 @@ import RealmSwift
 
 class NewsTableViewController: UITableViewController {
     let networkService = NetworkService()
-    private lazy var news = try? Realm().objects(News.self)
+    private lazy var news = try? Realm().objects(News.self).sorted(byKeyPath: "date", ascending: false)
+    
     var notificationToken: NotificationToken?
     
     override func viewDidLoad() {
@@ -22,16 +23,21 @@ class NewsTableViewController: UITableViewController {
         self.tableView.register(NewsTopCellNib, forCellReuseIdentifier: "NewsTopCell")
         self.tableView.register(NewsTextCell, forCellReuseIdentifier: "NewsTextCell")
         self.tableView.register(NewsBottomCellNib, forCellReuseIdentifier: "NewsBottomCell")
-        DispatchQueue.global().async(flags: .barrier){
+        let dispatchGroup = DispatchGroup()
+        DispatchQueue.global().async(group: dispatchGroup){
             self.networkService.getNews { news, users, groups  in
                 try? RealmProvider.save(items: groups)
                 try? RealmProvider.save(items: users)
                 try? RealmProvider.save(items: news)
-            }}
+            }
+        }
+        dispatchGroup.notify(queue: DispatchQueue.main) {
+            self.tableView.reloadData()
+        }
     }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
         notificationToken = news?.observe {[weak self] change in
             guard let self = self else { return }
             switch change {

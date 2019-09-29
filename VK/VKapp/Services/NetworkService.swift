@@ -30,7 +30,7 @@ class NetworkService {
             "extended" : 1,
             "order" : "name",
             "name_case" : "nom",
-            "fields": "photo_200_orig",
+            "fields": "photo_200",
             "v" : "5.101"
         ]
         NetworkService.session.request(self.baseUrl + path, method: .get, parameters: params).responseJSON { response in
@@ -230,26 +230,40 @@ class NetworkService {
         }
     }
     
+    //MARK: News
     func getNews(complition: @escaping ([News],[User],[Group]) -> Void){
         let path = "/method/newsfeed.get"
         guard let token = Session.session.token else {preconditionFailure("Empty token!")}
         let params: Parameters = [
             "access_token": token,
             "filters" : "post",
-            "count" : 10,
+            "count" : 20,
+            "fields" : "photo_200",
             "v": "5.101"
         ]
-        NetworkService.session.request(self.baseUrl + path, method: .get, parameters: params).responseJSON { response in
+        NetworkService.session.request(self.baseUrl + path, method: .get, parameters: params).responseJSON(queue: DispatchQueue.global()) { response in
             switch response.result {
             case .success(let value):
+                let newsDispatchGroup = DispatchGroup()
+                var news = [News]()
+                var groups = [Group]()
+                var profiles = [User]()
                 let json = JSON(value)
-                let newsJSONs = json["response"]["items"].arrayValue
-                let groupsJSONs = json["response"]["groups"].arrayValue
-                let profilesJSONs = json["response"]["profiles"].arrayValue
-                let news = newsJSONs.map {News($0)}
-                let groups = groupsJSONs.map {Group($0)}
-                let profiles = profilesJSONs.map {User($0)}
-                complition(news, profiles, groups)
+                DispatchQueue.global().async(group: newsDispatchGroup){
+                    let newsJSONs = json["response"]["items"].arrayValue
+                    news = newsJSONs.map {News($0)}
+                }
+                DispatchQueue.global().async(group: newsDispatchGroup){
+                    let groupsJSONs = json["response"]["groups"].arrayValue
+                    groups = groupsJSONs.map {Group($0)}
+                }
+                DispatchQueue.global().async(group: newsDispatchGroup) {
+                    let profilesJSONs = json["response"]["profiles"].arrayValue
+                    profiles = profilesJSONs.map {User($0)}
+                }
+                newsDispatchGroup.notify(queue: .main){
+                    complition(news, profiles, groups)
+                }
             case .failure(let err):
                 print(err)
                 complition([],[],[])
