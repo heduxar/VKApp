@@ -15,6 +15,7 @@ class User: Object {
     @objc dynamic var avatar: String = ""
     @objc dynamic var first_name: String = ""
     @objc dynamic var last_name: String = ""
+    @objc dynamic var is_friend: Int = 0
     let images = List<Photo>()
     let groups = List<Group>()
     
@@ -24,6 +25,7 @@ class User: Object {
         self.avatar = json["photo_200"].stringValue
         self.first_name = json["first_name"].stringValue
         self.last_name = json["last_name"].stringValue
+        self.is_friend = json["is_friend"].intValue
         self.images.append(objectsIn: images)
         self.groups.append(objectsIn: groups)
     }

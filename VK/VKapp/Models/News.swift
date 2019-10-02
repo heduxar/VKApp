@@ -15,6 +15,8 @@ class News: Object {
     @objc dynamic var postId: Int = 0
     @objc dynamic var date: Double = 0
     @objc dynamic var type: String = ""
+    @objc dynamic var name: String = ""
+    @objc dynamic var avatarURL: String = ""
     @objc dynamic var newsText: String = ""
     var photoAttachments = List<Photo>()
 //    var attachment = List<Photo>() {
@@ -41,44 +43,10 @@ class News: Object {
         self.userLike = json["likes"]["user_likes"].intValue
         self.repostsCount = json["reposts"]["count"].intValue
         self.views = json["views"]["count"].intValue
+        
         let attachmentsJSONs = json["attachments"].arrayValue
-        if attachmentsJSONs.count != 0 &&
-            attachmentsJSONs[0]["type"].stringValue == "photo"
-        {
-            let test = attachmentsJSONs.map {Photo($0)}
-            photoAttachments.append (objectsIn: test)
-        }
-        
-        //        attachmentsJSONs.map { (JSON) -> Photo in
-        //
-        //
-        //        }
-        //        attachmentsJSONs.forEach { attachment in
-        //            if attachment["type"].stringValue == "photo"{
-        //                let photo = attachment["photo"]
-        //                photo.forEach {
-        //                    Photo.init(photo)}
-        //            }
-        //        }
-//        photoAttachments.append(objectsIn: attachmentsJSONs.map {Photo($0)})
-//        photoAttachments.append(objectsIn: attachmentsJSONs.map {Photo($0)})
-//        attachmentsJSONs.forEach { type in
-//            if type["type"].stringValue == "photo" {
-//                photoAttachments.append(objectsIn: type.map {Photo ($0)})
-//            }
-//        }
-       
-
-        
-        
-//        self.id = json["id"].intValue
-//        self.owner_id = json["owner_id"].intValue
-//        let sizes = json["sizes"].arrayValue
-//        let biggestSize = sizes.reduce(sizes[0]) {currentSize, newSize -> JSON in
-//            let currentPoints = currentSize["width"].intValue + currentSize["height"].intValue
-//            let newPoints = newSize["width"].intValue + newSize["height"].intValue
-//            return currentPoints >= newPoints ? currentSize : newSize
-//        }
+        let photoAttachmentsJSONs = attachmentsJSONs.filter {$0["type"].stringValue == "photo"}
+        photoAttachments.append (objectsIn: photoAttachmentsJSONs.map {Photo($0)})
     }
     override static func primaryKey() -> String? {
         return "sourceId"

@@ -17,7 +17,7 @@ class FriendsTableViewController: UIViewController {
     @IBOutlet var lettersStackView: UIStackView!
     
     let networkService = NetworkService()
-    private lazy var usernames = try? Realm().objects(User.self)
+    private lazy var usernames = try? Realm().objects(User.self).filter("is_friend == %@", 1)
     private var notificationToken: NotificationToken?
     var firstLetters =  [Character]()
     var sortedUsers: [Character: [User]] = [:]

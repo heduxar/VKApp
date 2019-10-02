@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		2FBE755127C2518B57DBFBEA /* Pods_VKapp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CBC18D0088BC5CF49B2EF79C /* Pods_VKapp.framework */; };
 		B403ADB522FEDB0800254E26 /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = B403ADB422FEDB0800254E26 /* Session.swift */; };
+		B4110DF72343A86E0031733C /* OperationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4110DF62343A86E0031733C /* OperationManager.swift */; };
+		B4110DF92343A90D0031733C /* AsyncOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4110DF82343A90D0031733C /* AsyncOperation.swift */; };
+		B4110DFB2343A95B0031733C /* FilteringOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4110DFA2343A95B0031733C /* FilteringOperation.swift */; };
 		B41543B522CF58560056B2DC /* FriendsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B41543B422CF58560056B2DC /* FriendsTableViewController.swift */; };
 		B41543B722CFDA5B0056B2DC /* GroupsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B41543B622CFDA5B0056B2DC /* GroupsTableViewController.swift */; };
 		B41543B922D082FF0056B2DC /* UserGroupsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B41543B822D082FF0056B2DC /* UserGroupsTableViewController.swift */; };
@@ -62,6 +65,9 @@
 		19B27BC74F4A9EF9EAE353A8 /* Pods-VKapp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VKapp.release.xcconfig"; path = "Target Support Files/Pods-VKapp/Pods-VKapp.release.xcconfig"; sourceTree = "<group>"; };
 		76986B89455EB44E9EBB10EA /* Pods-VKapp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VKapp.debug.xcconfig"; path = "Target Support Files/Pods-VKapp/Pods-VKapp.debug.xcconfig"; sourceTree = "<group>"; };
 		B403ADB422FEDB0800254E26 /* Session.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Session.swift; sourceTree = "<group>"; };
+		B4110DF62343A86E0031733C /* OperationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OperationManager.swift; sourceTree = "<group>"; };
+		B4110DF82343A90D0031733C /* AsyncOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsyncOperation.swift; sourceTree = "<group>"; };
+		B4110DFA2343A95B0031733C /* FilteringOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilteringOperation.swift; sourceTree = "<group>"; };
 		B41543B422CF58560056B2DC /* FriendsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsTableViewController.swift; sourceTree = "<group>"; };
 		B41543B622CFDA5B0056B2DC /* GroupsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupsTableViewController.swift; sourceTree = "<group>"; };
 		B41543B822D082FF0056B2DC /* UserGroupsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserGroupsTableViewController.swift; sourceTree = "<group>"; };
@@ -259,6 +265,9 @@
 			children = (
 				B4CB9799231A481C00B31527 /* RealmProvider.swift */,
 				B4CB9793230938A300B31527 /* NetworkService.swift */,
+				B4110DF62343A86E0031733C /* OperationManager.swift */,
+				B4110DF82343A90D0031733C /* AsyncOperation.swift */,
+				B4110DFA2343A95B0031733C /* FilteringOperation.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -410,8 +419,10 @@
 				B4CB979D231E4C9C00B31527 /* UIViewController+Ext.swift in Sources */,
 				B41E0ADA22FAC96A0046527F /* ScaleUpAnimator.swift in Sources */,
 				B41543B522CF58560056B2DC /* FriendsTableViewController.swift in Sources */,
+				B4110DF72343A86E0031733C /* OperationManager.swift in Sources */,
 				B41CF43122E0597200CD50C5 /* AvatarImage.swift in Sources */,
 				B4F38D6922E74ED3006210F3 /* NewsTableViewController.swift in Sources */,
+				B4110DFB2343A95B0031733C /* FilteringOperation.swift in Sources */,
 				B41CF43322E0598100CD50C5 /* AvatarBackShadow.swift in Sources */,
 				B4CB979A231A481D00B31527 /* RealmProvider.swift in Sources */,
 				B4AE9ACE22C49DE30005822D /* LoginControllerView.swift in Sources */,
@@ -426,6 +437,7 @@
 				B41543BD22D0898C0056B2DC /* UserImagesViewController.swift in Sources */,
 				B470FC9B22F432C000C15FEB /* CustomNavigationController.swift in Sources */,
 				B4BA45932331091D00400CAB /* NewsImageCell.swift in Sources */,
+				B4110DF92343A90D0031733C /* AsyncOperation.swift in Sources */,
 				B455572922ECEF1B0024BA97 /* LayoutForCollection.swift in Sources */,
 				B4BA458C2330EF7200400CAB /* Date+Ext.swift in Sources */,
 				B4A9BCE422EB866100A43CAF /* NewsCell.swift in Sources */,

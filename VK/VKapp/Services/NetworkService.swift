@@ -30,7 +30,7 @@ class NetworkService {
             "extended" : 1,
             "order" : "name",
             "name_case" : "nom",
-            "fields": "photo_200",
+            "fields": "photo_200, is_friend",
             "v" : "5.101"
         ]
         NetworkService.session.request(self.baseUrl + path, method: .get, parameters: params).responseJSON { response in
@@ -238,7 +238,7 @@ class NetworkService {
             "access_token": token,
             "filters" : "post",
             "count" : 20,
-            "fields" : "photo_200",
+            "fields" : "photo_200, is_friend",
             "v": "5.101"
         ]
         NetworkService.session.request(self.baseUrl + path, method: .get, parameters: params).responseJSON(queue: DispatchQueue.global()) { response in

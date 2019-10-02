@@ -40,7 +40,6 @@ class Photo: Object {
             self.reposts = json["reposts"]["count"].intValue
             
         } else {
-            guard json["type"].stringValue == "photo" else { return }
             self.id = json["photo"]["id"].intValue
             self.owner_id = json["photo"]["owner_id"].intValue
             let sizes = json["photo"]["sizes"].arrayValue
