@@ -11,7 +11,7 @@ PODS:
 DEPENDENCIES:
   - Alamofire (= 4.8.2)
   - Kingfisher (= 5.7.1)
-  - RealmSwift
+  - RealmSwift (= 3.17.3)
   - SwiftyJSON (= 5.0.0)
 
 SPEC REPOS:

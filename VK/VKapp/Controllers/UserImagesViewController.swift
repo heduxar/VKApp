@@ -9,27 +9,30 @@
 import UIKit
 import RealmSwift
 
-class UserImagesView: UICollectionViewController {
+class UserImagesViewController: UICollectionViewController {
     
     @IBAction func backToImages(_ unwindSegue: UIStoryboardSegue) {}
     fileprivate let scaleUpAnimator = ScaleUpAnimator()
     let networkService = NetworkService()
     public var userId: Int = 1
-//    public var images = [Photo]()
     private lazy var images = try? Realm().objects(Photo.self).filter("owner_id == %@", userId)
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        networkService.getPhotos(userId: userId) { [weak self] photos in
-            try? RealmProvider.save(items: photos)
-//            self.images = photos
-            self?.collectionView.reloadData()
+        DispatchQueue.global().async(flags: .barrier) {
+            self.networkService.getPhotos(userId: self.userId) { [weak self] photos in
+                try? RealmProvider.save(items: photos)
+                guard let self = self,
+                    let user = try? Realm().objects(User.self).filter("id == %@", self.userId).first else {return}
+                try? Realm().write {
+                    user?.images.append(objectsIn: photos)
+                }
+                self.collectionView.reloadData()
+            }
         }
+        
     }
-//
-//    override func numberOfSections(in collectionView: UICollectionView) -> Int {
-//        return 1
-//    }
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return images?.count ?? 0
@@ -60,7 +63,7 @@ class UserImagesView: UICollectionViewController {
         let bigPhotoController = storyboard.instantiateViewController(withIdentifier: "bigImageView")
         bigPhotoController.transitioningDelegate = self
         
-        if let destination = bigPhotoController as? SelectedImageView {
+        if let destination = bigPhotoController as? SelectedImageViewController {
             guard collectionView.indexPathsForSelectedItems?.count == 1 else { return }
             let selectedItem = collectionView.indexPathsForSelectedItems![0].item
             destination.indexPhoto = selectedItem
@@ -71,7 +74,7 @@ class UserImagesView: UICollectionViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "selectedImage",
-            let selectedImageVC = segue.destination as? SelectedImageView {
+            let selectedImageVC = segue.destination as? SelectedImageViewController {
             guard let indexPath = sender as? Int else {return}
             selectedImageVC.userId = userId
             selectedImageVC.indexPhoto = indexPath
@@ -79,7 +82,7 @@ class UserImagesView: UICollectionViewController {
     }
 }
 
-extension UserImagesView: UIViewControllerTransitioningDelegate {
+extension UserImagesViewController: UIViewControllerTransitioningDelegate {
     func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         return scaleUpAnimator
     }
