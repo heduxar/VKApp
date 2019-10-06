@@ -36,10 +36,16 @@ class NetworkService {
         NetworkService.session.request(self.baseUrl + path, method: .get, parameters: params).responseJSON { response in
             switch response.result {
             case .success(let value):
+                let dispatchGroup = DispatchGroup()
                 let json = JSON(value)
-                let usersJSONs = json["response"]["items"].arrayValue
-                let users = usersJSONs.map {User($0)}
-                complition(users)
+                var users = [User]()
+                DispatchQueue.global().async(group: dispatchGroup){
+                    let usersJSONs = json["response"]["items"].arrayValue
+                    users = usersJSONs.map {User($0)}
+                }
+                dispatchGroup.notify(queue: .main){
+                    complition(users)
+                }
             case .failure(let err):
                 print(err)
                 complition([])
@@ -67,10 +73,16 @@ class NetworkService {
         NetworkService.session.request(self.baseUrl + path, method: .get, parameters: params).responseJSON { response in
             switch response.result {
             case .success(let value):
+                let dispatchGroup = DispatchGroup()
                 let json = JSON(value)
-                let photosJSONs = json["response"]["items"].arrayValue
-                let photos = photosJSONs.map {Photo($0)}
-                complition(photos)
+                var photos = [Photo]()
+                DispatchQueue.global().async(group: dispatchGroup){
+                    let photosJSONs = json["response"]["items"].arrayValue
+                    photos = photosJSONs.map {Photo($0)}
+                }
+                dispatchGroup.notify(queue: .main){
+                    complition(photos)
+                }
             case .failure(let err):
                 print(err)
                 complition([])
@@ -135,10 +147,16 @@ class NetworkService {
         NetworkService.session.request(self.baseUrl + path, method: .get, parameters: params).responseJSON { response in
             switch response.result {
             case .success(let value):
+                let dispatchGroup = DispatchGroup()
+                var groups = [Group]()
                 let json = JSON(value)
-                let groupsJSONs = json["response"]["items"].arrayValue
-                let groups = groupsJSONs.map {Group($0)}
-                complition(groups)
+                DispatchQueue.global().async(group: dispatchGroup){
+                    let groupsJSONs = json["response"]["items"].arrayValue
+                    groups = groupsJSONs.map {Group($0)}
+                }
+                dispatchGroup.notify(queue: .main){
+                    complition(groups)
+                }
             case .failure(let err):
                 print(err)
                 complition([])
@@ -195,10 +213,16 @@ class NetworkService {
         NetworkService.session.request(self.baseUrl + path, method: .get, parameters: params).responseJSON { response in
             switch response.result {
             case .success(let value):
+                let dispatchGroup = DispatchGroup()
+                var groups = [Group]()
                 let json = JSON(value)
-                let groupsJSONs = json["response"]["items"].arrayValue
-                let groups = groupsJSONs.map {Group($0)}
-                complition(groups)
+                DispatchQueue.global().async(group: dispatchGroup){
+                    let groupsJSONs = json["response"]["items"].arrayValue
+                    groups = groupsJSONs.map {Group($0)}
+                }
+                dispatchGroup.notify(queue: .main){
+                    complition(groups)
+                }
             case .failure(let err):
                 print(err)
                 complition([])
@@ -219,10 +243,16 @@ class NetworkService {
         NetworkService.session.request(self.baseUrl + path, method: .get, parameters: params).responseJSON { response in
             switch response.result {
             case .success(let value):
+                let dispatchGroup = DispatchGroup()
+                var groups = [Group]()
                 let json = JSON(value)
-                let groupsJSONs = json["response"]["items"].arrayValue
-                let groups = groupsJSONs.map {Group($0)}
-                complition(groups)
+                DispatchQueue.global().async(group: dispatchGroup){
+                    let groupsJSONs = json["response"]["items"].arrayValue
+                    groups = groupsJSONs.map {Group($0)}
+                }
+                dispatchGroup.notify(queue: .main){
+                    complition(groups)
+                }
             case .failure(let err):
                 print(err)
                 complition([])
@@ -231,7 +261,7 @@ class NetworkService {
     }
     
     //MARK: News
-    func getNews(complition: @escaping ([News],[User],[Group]) -> Void){
+    func getNews(complition: @escaping (Result<(news: [News], users: [User], groups: [Group])>) -> Void){
         let path = "/method/newsfeed.get"
         guard let token = Session.session.token else {preconditionFailure("Empty token!")}
         let params: Parameters = [
@@ -262,11 +292,13 @@ class NetworkService {
                     profiles = profilesJSONs.map {User($0)}
                 }
                 newsDispatchGroup.notify(queue: .main){
-                    complition(news, profiles, groups)
+                    let result = Result<(news: [News], users: [User], groups: [Group])>.success((news, profiles, groups))
+                    complition (result)
                 }
-            case .failure(let err):
-                print(err)
-                complition([],[],[])
+            case .failure(let error):
+                print(error)
+                let result = Result<(news: [News], users: [User], groups: [Group])>.failure(error)
+                complition(result)
             }
         }
     }

@@ -25,7 +25,10 @@ class NewsTableViewController: UITableViewController {
         self.tableView.register(NewsBottomCellNib, forCellReuseIdentifier: "NewsBottomCell")
         let dispatchGroup = DispatchGroup()
         DispatchQueue.global().async(group: dispatchGroup){
-            self.networkService.getNews { news, users, groups  in
+            self.networkService.getNews { result in
+                guard let news = try? result.unwrap().news,
+                    let groups = try? result.unwrap().groups,
+                    let users = try? result.unwrap().users else {preconditionFailure("Error! GetNews-NetworkService")}
                 try? RealmProvider.save(items: groups)
                 try? RealmProvider.save(items: users)
                 try? RealmProvider.save(items: news)

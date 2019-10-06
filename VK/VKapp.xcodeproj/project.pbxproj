@@ -58,6 +58,7 @@
 		B4CB979A231A481D00B31527 /* RealmProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4CB9799231A481C00B31527 /* RealmProvider.swift */; };
 		B4CB979D231E4C9C00B31527 /* UIViewController+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4CB979C231E4C9C00B31527 /* UIViewController+Ext.swift */; };
 		B4CB97A0231E51E600B31527 /* UITableView+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4CB979F231E51E500B31527 /* UITableView+Ext.swift */; };
+		B4DDD7B22349D233001CE307 /* PhotoService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4DDD7B12349D233001CE307 /* PhotoService.swift */; };
 		B4F38D6922E74ED3006210F3 /* NewsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4F38D6822E74ED3006210F3 /* NewsTableViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -116,6 +117,7 @@
 		B4CB9799231A481C00B31527 /* RealmProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RealmProvider.swift; sourceTree = "<group>"; };
 		B4CB979C231E4C9C00B31527 /* UIViewController+Ext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Ext.swift"; sourceTree = "<group>"; };
 		B4CB979F231E51E500B31527 /* UITableView+Ext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITableView+Ext.swift"; sourceTree = "<group>"; };
+		B4DDD7B12349D233001CE307 /* PhotoService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoService.swift; sourceTree = "<group>"; };
 		B4F38D6822E74ED3006210F3 /* NewsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = NewsTableViewController.swift; path = VKapp/Controllers/NewsTableViewController.swift; sourceTree = SOURCE_ROOT; };
 		CBC18D0088BC5CF49B2EF79C /* Pods_VKapp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_VKapp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -268,6 +270,7 @@
 				B4110DF62343A86E0031733C /* OperationManager.swift */,
 				B4110DF82343A90D0031733C /* AsyncOperation.swift */,
 				B4110DFA2343A95B0031733C /* FilteringOperation.swift */,
+				B4DDD7B12349D233001CE307 /* PhotoService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -414,6 +417,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B4DDD7B22349D233001CE307 /* PhotoService.swift in Sources */,
 				B4CB97982312750400B31527 /* Photo.swift in Sources */,
 				B4B76D6F23054D5300432A6B /* LoginVKController.swift in Sources */,
 				B4CB979D231E4C9C00B31527 /* UIViewController+Ext.swift in Sources */,

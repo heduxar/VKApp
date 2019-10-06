@@ -117,7 +117,7 @@ class UserGroupsTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        performSegue(withIdentifier: "addGroupButton", sender: nil)
+//        performSegue(withIdentifier: "addGroupButton", sender: nil)
         tableView.deselectRow(at: indexPath, animated: true)
     }
     

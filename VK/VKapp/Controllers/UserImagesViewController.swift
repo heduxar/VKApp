@@ -16,6 +16,7 @@ class UserImagesViewController: UICollectionViewController {
     let networkService = NetworkService()
     public var userId: Int = 1
     private lazy var images = try? Realm().objects(Photo.self).filter("owner_id == %@", userId)
+    private let photoService = PhotoService()
     
     
     override func viewDidLoad() {
@@ -39,9 +40,15 @@ class UserImagesViewController: UICollectionViewController {
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CollectionCell", for: indexPath) as! CollectionCell
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CollectionCell", for: indexPath) as? CollectionCell else { preconditionFailure("Error with cell!")}
         let img = images?[indexPath.item]
-        cell.configurePhotos(with: img)
+//        cell.configurePhotos(with: img)
+        cell.configurePhotoCell(photo: img, by: photoService)
+        return cell
+    }
+    
+    override func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CollectionCell", for: indexPath) as? CollectionCell else { return }
         let opacity = CABasicAnimation(keyPath: #keyPath(CALayer.opacity))
         opacity.fromValue = 0
         opacity.toValue = 1
@@ -51,9 +58,8 @@ class UserImagesViewController: UICollectionViewController {
         let animGroup = CAAnimationGroup ()
         animGroup.duration = 1
         animGroup.animations = [opacity, scale]
-        
         cell.layer.add(animGroup, forKey: nil)
-        return cell
+        
     }
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
