@@ -10,7 +10,7 @@ import UIKit
 import Kingfisher
 import RealmSwift
 
-class SelectedImageView: UIViewController, UIScrollViewDelegate {
+class SelectedImageViewController: UIViewController, UIScrollViewDelegate {
     var userId: Int = 0
     var indexPhoto = Int()
     private lazy var images = try? Realm().objects(Photo.self).filter("owner_id == %@", userId)
@@ -31,20 +31,20 @@ class SelectedImageView: UIViewController, UIScrollViewDelegate {
             if liked {
                 UIView.transition(with: heart, duration: 0.3, options: .transitionFlipFromTop, animations: {
                     self.heart.image = UIImage(named: "heart_filled")
-                    let photo = try? Realm().objects(Photo.self).filter("id == %@", self.images?[self.indexPhoto].id)
+                    guard let imageId = self.images?[self.indexPhoto].id else {return}
+                    let photo = try? Realm().objects(Photo.self).filter("id == %@", imageId)
                     try? Realm().write {
                             photo?.setValue(1, forKey: "user_likes")
                     }
-//                    self.images?[self.indexPhoto].user_likes = 1
                 }, completion: nil)
             } else {
                 UIView.transition(with: heart, duration: 0.3, options: .transitionFlipFromTop, animations: {
                     self.heart.image = UIImage(named: "heart_empty")
-                    let photo = try? Realm().objects(Photo.self).filter("id == %@", self.images?[self.indexPhoto].id)
+                    guard let imageId = self.images?[self.indexPhoto].id else {return}
+                    let photo = try? Realm().objects(Photo.self).filter("id == %@", imageId)
                     try? Realm().write {
                         photo?.setValue(0, forKey: "user_likes")
                     }
-//                    self.images?[self.indexPhoto].user_likes = 0
                 }, completion: nil)
             }
         }
@@ -53,14 +53,11 @@ class SelectedImageView: UIViewController, UIScrollViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         setImage(indexPhoto: indexPhoto)
-        //        imageView.kf.setImage(with: URL(string: images[indexPhoto].urlString))
-        //        likeCounter.text = String(images[indexPhoto].likes)
-        //        repostCounter.text = String(images[indexPhoto].reposts)
         addSwipe()
     }
     private func setImage (indexPhoto: Int) {
         self.imageView.transform = .identity
-        imageView.kf.setImage(with: URL(string: images![indexPhoto].urlString))
+        imageView.kf.setImage(with: URL(string: images![indexPhoto].urlBigPhoto))
         likeCounter.text = String(images![indexPhoto].likes)
         repostCounter.text = String(images![indexPhoto].reposts)
         images![indexPhoto].user_likes > 0 ? (self.liked = true) : (self.liked = false)
