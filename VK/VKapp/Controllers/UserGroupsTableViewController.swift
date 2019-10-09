@@ -43,8 +43,7 @@ class UserGroupsTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let MainTableCellNib = UINib (nibName: "MainTableCell", bundle: nil)
-        tableView.register(MainTableCellNib, forCellReuseIdentifier: "MainTableCell")
+        tableView.register(MainTableCell.self, forCellReuseIdentifier: "MainTableCell")
         self.networkService.getGroups(){ groups in
             try? RealmProvider.save(items: groups)
 
@@ -117,8 +116,11 @@ class UserGroupsTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        performSegue(withIdentifier: "addGroupButton", sender: nil)
         tableView.deselectRow(at: indexPath, animated: true)
+    }
+    
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 95
     }
     
     private func startFiltration(for image: UIImage, at indexPath: IndexPath) {
@@ -127,8 +129,8 @@ class UserGroupsTableViewController: UITableViewController {
         
         let sepiaOperation = SepiaFilterOperation(image)
         sepiaOperation.completionBlock = {
-            print(sepiaOperation.groups)
-            print(sepiaOperation.image)
+//            print(sepiaOperation.groups)
+//            print(sepiaOperation.image)
         }
         let vignetteOperation = VignetteFilterOperation()
         vignetteOperation.addDependency(sepiaOperation)

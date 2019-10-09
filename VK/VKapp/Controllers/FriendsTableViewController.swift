@@ -24,8 +24,7 @@ class FriendsTableViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let MainTableCellNib = UINib (nibName: "MainTableCell", bundle: nil)
-        self.tableView.register(MainTableCellNib, forCellReuseIdentifier: "MainTableCell")
+        self.tableView.register(MainTableCell.self, forCellReuseIdentifier: "MainTableCell")
         let dispatchGroup = DispatchGroup()
         DispatchQueue.global().async (group: dispatchGroup) {
             self.networkService.getFriends() { [weak self] users in
@@ -38,6 +37,9 @@ class FriendsTableViewController: UIViewController {
         dispatchGroup.notify(queue: DispatchQueue.main) {
             self.tableView.reloadData()
         }
+    }
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -81,7 +83,7 @@ class FriendsTableViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "showImages" {
             if let indexPath = self.tableView.indexPathForSelectedRow {
-                guard let usersByChar = sortedUsers[firstLetters[indexPath.section]] else {preconditionFailure("No users by letter")}
+                guard let usersByChar = sortedUsers[firstLetters[indexPath.section]] else { preconditionFailure("No users by letter") }
                 let selectedUser = usersByChar[indexPath.row]
                 if let userImagesVC = segue.destination as? UserImagesViewController{
                     userImagesVC.userId = selectedUser.id
@@ -97,12 +99,18 @@ extension FriendsTableViewController: UITableViewDelegate{
         }, completion: {_ in
             UIView.animate(withDuration: 0.05, animations: {
                 self.tableView.cellForRow(at: indexPath)?.transform = CGAffineTransform.identity
-            }, completion: nil)
+            }, completion: {_ in
+                self.performSegue(withIdentifier: "showImages", sender: self)
+                self.tableView.deselectRow(at: indexPath, animated: true)
+            })
         })
-        let when = DispatchTime.now() + 0.14
-        DispatchQueue.main.asyncAfter(deadline: when){
-            self.performSegue(withIdentifier: "showImages", sender: self)
-            self.tableView.deselectRow(at: indexPath, animated: true)}
+        
+        //TODO: Исправить переход ниже. Вроде не работал комплишн в анимации выше на переход, или просто тормозной комп не успевал отъиграть анимацию.
+        
+//        let when = DispatchTime.now() + 0.14
+//        DispatchQueue.main.asyncAfter(deadline: when){
+//            self.performSegue(withIdentifier: "showImages", sender: self)
+//            self.tableView.deselectRow(at: indexPath, animated: true)}
     }
 }
 extension FriendsTableViewController: UITableViewDataSource{
@@ -121,18 +129,29 @@ extension FriendsTableViewController: UITableViewDataSource{
         let letter = firstLetters[indexPath.section]
         if let user = sortedUsers[letter]{
             cell.configureUser(with: user[indexPath.row])
-            UIView.transition(with: cell, duration: 1, options: .transitionFlipFromBottom, animations: {
-                cell.avatar.transform = CGAffineTransform (scaleX: 0.6, y: 0.6)
-            }, completion: {_ in
-                cell.avatar.transform = CGAffineTransform.identity
-            })
         }
         return cell
     }
     
+    //TODO - странно работающая анимация.
+//    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+//        guard let cell = cell as? MainTableCell else {return}
+//        UIView.transition(with: cell, duration: 1, options: .transitionFlipFromBottom, animations: {
+//
+//            cell.avatar.transform = CGAffineTransform (scaleX: 0.6, y: 0.6)
+//        }, completion: {_ in
+//            cell.avatar.transform = CGAffineTransform (scaleX: 1, y: 1)
+//        })
+//    }
+    
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         let letter = firstLetters[section]
         return String(letter)
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        let height: CGFloat = 95
+        return height
     }
     
     /// Sort users by surname and groups them by first letter.

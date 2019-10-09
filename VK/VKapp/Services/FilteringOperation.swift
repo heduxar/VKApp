@@ -41,13 +41,14 @@ class SepiaFilterOperation: AsyncOperation, FilteredImageProvider {
         if let filteredImage = applySepiaFilter(self.image) {
             self.image = filteredImage
             self.imageState = .filtered
+            self.state = .finished
         }
         
-        let service = NetworkService()
-        service.getGroups { [weak self] groups in
-            self?.groups = groups
-            self?.state = .finished
-        }
+//        let service = NetworkService()
+//        service.getGroups { [weak self] groups in
+//            self?.groups = groups
+//            self?.state = .finished
+//        }
     }
     
     private func applySepiaFilter(_ image: UIImage) -> UIImage? {

@@ -16,6 +16,7 @@ class GroupsTableViewController: UITableViewController {
             self.tableView.reloadData()
         }
     }
+    
     var searchingText = ""{
         didSet{
             if searchingText.count > 0{
@@ -24,6 +25,7 @@ class GroupsTableViewController: UITableViewController {
             } else {searchingGroups = nil}
         }
     }
+    
     let networkService = NetworkService()
     lazy var allGroups = try? Realm().objects(Group.self).filter("member != %@", 1)
     var notificationToken: NotificationToken?
@@ -31,12 +33,12 @@ class GroupsTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let MainTableCellNib = UINib (nibName: "MainTableCell", bundle: nil)
-        tableView.register(MainTableCellNib, forCellReuseIdentifier: "MainTableCell")
+        tableView.register(MainTableCell.self, forCellReuseIdentifier: "MainTableCell")
         networkService.getCatalog(){ groups in
             try? RealmProvider.save(items: groups)
         }
     }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         notificationToken = allGroups?.observe {[weak self] change in
@@ -51,13 +53,20 @@ class GroupsTableViewController: UITableViewController {
             }
         }
     }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+    }
+    
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         notificationToken?.invalidate()
     }
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if searching { return searchingGroups?.count ?? 0} else { return allGroups?.count ?? 0}
     }
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "MainTableCell", for: indexPath) as? MainTableCell else { preconditionFailure("Error with Cell: MainTableCell") }
         var groups = allGroups?[indexPath.row]
@@ -65,9 +74,14 @@ class GroupsTableViewController: UITableViewController {
         cell.configureGroup(with: groups)
         return cell
     }
+    
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         performSegue(withIdentifier: "addGroup", sender: nil)
         tableView.deselectRow(at: indexPath, animated: true)
+    }
+    
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 95
     }
 }
 extension GroupsTableViewController: UISearchBarDelegate{
