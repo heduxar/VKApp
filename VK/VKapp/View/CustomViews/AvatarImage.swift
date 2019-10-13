@@ -9,8 +9,8 @@
 import UIKit
 
 class AvatarImage: UIImageView {
-    @IBInspectable var borderColor: UIColor = .gray
-    @IBInspectable var borderWidth: CGFloat = 1.5
+    let borderColor: UIColor = .gray
+    let borderWidth: CGFloat = 1.5
     
     override func layoutSubviews() {
         super.layoutSubviews()

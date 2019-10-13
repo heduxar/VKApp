@@ -21,9 +21,9 @@ class ScaleUpAnimator: NSObject, UIViewControllerAnimatedTransitioning {
         guard let source = transitionContext.viewController(forKey: .from) ,
             let destination = transitionContext.viewController(forKey: .to)  else { return }
         
-        let userImagesControllers = source.children[1].children.filter { $0 is UserImagesView }
+        let userImagesControllers = source.children[1].children.filter { $0 is UserImagesViewController }
         
-        guard let userImagesView = userImagesControllers.first as? UserImagesView,
+        guard let userImagesView = userImagesControllers.first as? UserImagesViewController,
             let selectedItems = userImagesView.collectionView.indexPathsForSelectedItems,
             let indexPath = selectedItems.first,
             let cell = userImagesView.collectionView.cellForItem(at: indexPath),
