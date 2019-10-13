@@ -9,7 +9,7 @@
 import UIKit
 import WebKit
 
-class LoginVK: UIViewController {
+class LoginVKController: UIViewController {
     
     @IBOutlet weak var webView: WKWebView! {
         didSet {
@@ -38,7 +38,7 @@ class LoginVK: UIViewController {
     
 }
 
-extension LoginVK: WKNavigationDelegate  {
+extension LoginVKController: WKNavigationDelegate  {
     func webView(_ webView: WKWebView, decidePolicyFor navigationResponse: WKNavigationResponse, decisionHandler: @escaping (WKNavigationResponsePolicy) -> Void) {
         guard let url = navigationResponse.response.url,
             url.path == "/blank.html",
