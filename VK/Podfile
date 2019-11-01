@@ -10,4 +10,6 @@ target 'VKapp' do
   pod 'SwiftyJSON', '= 5.0.0'
   pod 'Kingfisher', '= 5.7.1'
   pod 'RealmSwift', '= 3.17.3'
+  pod 'PromiseKit'
+  pod 'PromiseKit/Alamofire'
 end
