@@ -11,10 +11,16 @@ import Kingfisher
 
 class CollectionCell: UICollectionViewCell {
     @IBOutlet var img: CollectionImage!
+    
     public func configurePhotos(with photo: Photo?) {
         guard let photo = photo else {return}
-        img.kf.setImage(with: URL(string: photo.urlString))
-//        name.text = group.name
-//        avatar.kf.setImage(with: URL(string: group.avatar))
+        img.kf.setImage(with: URL(string: photo.urlSmallPhoto))
+    }
+    public func configurePhotoCell (photo: Photo?, by photoService: PhotoService){
+        guard let photo = photo else {return}
+        let url = photo.urlSmallPhoto
+        photoService.photo(urlString: url) {[weak self] image in
+            self?.img.image = image
+        }
     }
 }
